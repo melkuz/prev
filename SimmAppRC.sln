@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimmAppRC", "SimmAppRC\SimmAppRC.csproj", "{ED9D710C-D993-4A8B-81E9-103785597F64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C1EB84C-9C3E-41FF-B8DC-191F63C392ED}"
+	ProjectSection(SolutionItems) = preProject
+		SimmAppRC\VueJS\css\img\user-image.jpg = SimmAppRC\VueJS\css\img\user-image.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED9D710C-D993-4A8B-81E9-103785597F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9D710C-D993-4A8B-81E9-103785597F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9D710C-D993-4A8B-81E9-103785597F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9D710C-D993-4A8B-81E9-103785597F64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4749E53F-261A-4C6D-A995-7266B3D2B664}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- index.html - user manager                                                                                         -->
+<!----------------------------------------------------------------------------------------------------------------------->
+<body>
+
+    <!-- CSS - Custom -->
+    <link rel="stylesheet" href="VueJS/user_manager/custom.css">
+
+    <!-- CSS - Vuetify -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <div id="main"></div>
+
+    <script>
+        $(function ()
+        {
+            $("#main").load("VueJS/user_manager/template.html", function ()
+            {
+                console.log("template loaded")
+
+                $.getScript('VueJS/user_manager/ajax.js', function ()
+                {
+                    $.getScript('VueJS/user_manager/scripts.js', function ()
+                    {
+                        console.log("Loading complete")
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>

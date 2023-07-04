@@ -1,0 +1,670 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- template.html - admin case                                                                                        -->
+<!----------------------------------------------------------------------------------------------------------------------->
+
+<!-- TOP PROPERTIES ================================================ -->
+<!--
+<div class="row mt-0 mb-0" v-if="hover == false">
+   <div class="col-12" v-if="user_status >= 10000">
+	  <button type="button" v-if="case_properties.approved == false" class="btn btn-danger text-white btn-block mb-0" @click="change_approve">Cas non approuvé</button>
+	  <button type="button" v-if="case_properties.approved" class="btn btn-success text-white btn-block mb-0" @click="change_approve">Cas approuvé</button>
+  </div>
+  <div class="col-12" v-if="user_status < 10000">
+	  <div class="alert alert-danger text-center mb-0" role="alert" v-if="case_properties.approved == false">Cas non approuvé</div>
+	  <div class="alert alert-success text-center mb-0" role="alert" v-if="case_properties == false">Cas approuvé</div>
+  </div>
+</div> -->
+
+<div class="row mt-0 mb-0" style="background-color:rgb(225,225,225)" v-if="hover == false">
+	<div class="col-12 text-center">
+		<div class="row">
+			<div class="col-2 text-left">
+				<div class="alert d-inline text-white text-left mb-0 pt-1 pb-1 save_button" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;background-color:#32a84e" role="alert" @click="save_all(true,false)" ><i class="bi-save2"></i> Sauvegarder</div>
+			</div>
+			<div class="col-2 text-left">
+				<div class="alert d-inline text-white text-left mb-0 pt-1 pb-1 save_button" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;background-color:#32a84e" role="alert" @click="save_all(false,true)"><i class="bi-eye"></i> Sauvegarder et visualiser</div>
+			</div>
+			<div class="col-8">
+				<div class="alert d-inline text-black text-center mb-0 pt-1 pb-1" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" role="alert" >Gestionnaire de cas</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row mt-0 mb-0" style="background-color:yellow" v-if="hover">
+	<div class="col-12">
+		<div class="row">
+			<div class="col-3">
+				<div class="row">
+
+					<div class="col">
+						<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info[0] }}</div>
+					</div>
+					<div class="col">
+						<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info[3] }}</div>
+					</div>
+					<div class="col">
+						<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info[4] }}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-9">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- SECOND LINE TOP BAR -->
+<div class="row mt-0 p-0">
+
+	<!-- First column -->
+	<div class="col-3 px-3 text-black text-center w-100">
+		<div class="row">
+			<div class="col text-center pb-1" :class="{'top_button_ns': option0!=0, 'top_button_s': option0==0}" @click="option0=0" @mouseover="hover = true ; hover_info=['','','','',''] ; hover_info[0]='Paramètres généraux du cas et introduction' " @mouseleave="hover = false; "><i class="bi-star"></i></div>
+			<!--<div class="col text-center pb-1" :class="{'top_button_ns': option0!=1, 'top_button_s': option0==1}" @click="option0=1" @mouseover="hover = true ; hover_info=['','','','',''] ; hover_info[1]='Gestion des acc&egrave;s' " @mouseleave="hover = false; "><i class="bi-people"></i></div>-->
+			<!--<div class="col text-center pb-1" :class="{'top_button_ns': option0!=101, 'top_button_s': option0==101}" @click="option0=101" @mouseover="hover = true ; hover_info=['','','','',''] ; hover_info[2]='Briefing' " @mouseleave="hover = false; "><i class="bi-chevron-right"></i></div>-->
+			<div class="col text-center pb-1" :class="{'top_button_ns': option0!=2, 'top_button_s': option0==2}" @click="option0=2" @mouseover="hover = true ; hover_info=['','','','',''] ; hover_info[3]='Étapes' " @mouseleave="hover = false; "><i class="bi-list-ol"></i></div>
+			<div class="col text-center pb-1" :class="{'top_button_ns': option0!=102, 'top_button_s': option0==102}" @click="option0=102" @mouseover="hover = true ; hover_info=['','','','',''] ; hover_info[4]='Fin de cas' " @mouseleave="hover = false; "><i class="bi-flag"></i></div>
+		</div>
+	</div>
+
+	<!-- Second column -->
+	<div class="col-3 pl-3 text-white w-100 text-center" style="background-color:rgb(50,50,50);" v-if="(hover2 == false)">
+		<div v-if="(steps_list.length > 0)">
+			<!-- If there is at least one step -->
+			<div class="d-inline " v-if="option0==2" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;"><span v-if="(steps_list[step_index].step_properties.step_type!=10001)">{{ steps_list[step_index].step_properties.step_name }}</span><span v-if="steps_list[step_index].step_properties.step_type==10001">Grille de raisonnement structuré</span><span v-if="option1>=1"></span></div>
+		</div>
+		<div class="d-inline" v-if="option0==0" >Blocs d'introduction</div>
+		<div class="d-inline " v-if="option0==102">Réponses</div>
+	</div>
+	<div class="col-9" style="background-color:yellow;" v-if="hover2">
+		<div class="row">
+
+			<div class="col">
+				<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info2[1] }}</div>
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+				<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info2[2] }}</div>
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+				<div class="d-inline text-black text-left mb-0 pt-1 pb-1" style="white-space: nowrap;">{{ hover_info2[3] }}</div>
+			</div>
+			<div class="col">
+			</div>
+			<div class="col">
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+			</div>
+			<div class="col" v-if="steps_list[step_index].step_properties.step_type <= 9999">
+			</div>
+		</div>
+	</div>
+
+	<!-- Third column -->
+	<div class="col-6 pl-3  text-white w-100 text-center" style="background-color:rgb(110,110,110);" v-if=" (hover2 == false) && (hover3 == false)">
+		<div class="d-inline" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" v-if="(option1==1) && (option0==2)">Bloc d'information</div>
+		<div class="d-inline" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" v-if="(option1==2) && (option0==2)">Bloc de question</div>
+		<div class="d-inline" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" v-if="(option0==101)"></div>
+		<div class="d-inline" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;" v-if="(option0==102) && (case_end_properties.retroactions_list.length > 0)">Bloc de rétroaction</div>
+	</div>
+	<div class="col-6 pl-3 text-right" style="background-color:yellow;" v-if="hover3">
+		<div class="d-inline" style="white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">Supprimer ce bloc</div>
+	</div>
+
+
+</div>
+
+
+
+<div class="row ">
+
+
+	<div class="col-3 colsp">
+		<!-- FIRST COLUMN -->
+
+
+		<div id="general_properties" class=" " v-if="option0==0">
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Nom du cas</h6>
+				<input type="text" style="width:100%;min-width:100%;" class="form-control" v-model="case_properties.case_name">
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Contexte clinique</h6>
+				<select type="text" style="width:100%;min-width:100%;" class="form-control" v-model="case_properties.clinical_context">
+					<option value="Clinique externe">Clinique externe</option>
+					<option value="Soins à domicile">Soins à domicile</option>
+					<option value="Soins intensifs">Soins intensifs</option>
+					<option value="Soins intra-hospitaliers">Soins intra-hospitaliers</option>
+					<option value="Urgence">Urgence</option>
+				</select>
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Spécialité</h6>
+				<select type="text" style="width:100%;min-width:100%;" v-model="case_properties.discipline" class="form-control">
+					<option value="Chirurgie">Chirurgie</option>
+					<option value="Gynécologie et obstétrique">Gynécologie et obstétrique</option>
+					<option value="Médecine de famille">Médecine de famille</option>
+					<option value="Médecine de l'adulte">Médecine de l'adulte</option>
+					<option value="Médecine interne">Médecine interne</option>
+					<option value="Pédiatrie">Pédiatrie</option>
+					<option value="Psychiatrie">Psychiatrie</option>
+				</select>
+			</div>
+
+			<datalist id="all_disciplines">
+				<option value="Anesthésie-réanimation">
+				<option value="Anatomie et cytologie pathologique">
+				<option value="Biologie médicale">
+				<option value="Cardiologie et maladies vasculaires">
+				<option value="Chirurgie générale">
+				<option value="Chirurgie orale">
+				<option value="Dermatologie et vénérologie">
+				<option value="Endocrinologie, diabète, maladies métaboliques">
+				<option value="Gastro-entérologie et hépatologie">
+				<option value="Génétique médicale">
+				<option value="Gynécologie médicale">
+				<option value="Gynécologie obstétrique">
+				<option value="Hématologie">
+				<option value="Médecine du travail">
+				<option value="Médecine générale">
+				<option value="Médecine interne">
+				<option value="Médecine nucléaire">
+				<option value="Médecine physique et de réadaptation">
+				<option value="Néphrologie">
+				<option value="Neurochirurgie">
+				<option value="Neurologie">
+				<option value="O.R.L et chirurgie cervico-faciale">
+				<option value="Oncologie">
+				<option value="Ophtalmologie">
+				<option value="Pédiatrie">
+				<option value="Pneumologie">
+				<option value="Psychatrie">
+				<option value="Radiodiagnostic et de imaginerie médicale">
+				<option value="Rhumatologie">
+				<option value="Santé publique">
+			</datalist>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Nom du patient</h6>
+				<input type="text" style="width:100%;min-width:100%;" class="form-control" v-model="case_properties.patient_name">
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Image du patient</h6>
+				<input type="file" style="width:100%;min-width:100%;" class="form-control" @change="previewFiles_patient">
+				<div v-if=" case_properties.image ">
+					<p class="px-2 mt-3"><img style="width:100%;height:auto;" :src="case_properties.image"></p>
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<!--<div id="access" class="" v-if="option0==1">
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Utilisateurs ayant accès à ce cas</h6>
+				<table class="table mb-0 text-left">
+					<tr v-for="ui in case_access">
+						<td class="text-right"><button type="button" class="btn btn-secondary" v-if="user_id != ui" @click="delete_admin_user(ui)"><i class="bi-trash"></i></button></td>
+						<td class="pt-3">{{ admin_users[ui].name }}</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Ajouter un utilisateur</h6>
+				<select placeholder="Sélectionnez dans la liste" v-model="selected_admini_user" class="form-control">
+					<option :value="null" disabled>Selectionnez dans la liste</option>
+					<option v-for="(user,key, index) in admin_users" :value="key">{{ user.name }}</option>
+				</select>
+				<button type="button" class="btn btn-primary mt-0 w-100" @click="add_admin_user"><i class="bi-person-plus" class="mr-3"></i> Ajouter</button>
+			</div>
+
+		</div>-->
+
+
+
+		<div id="steps" class="mt-3" v-if="option0==2">
+
+			<div class="card" style="background-color:rgb(245,245,245);" id="arrowredrel1">
+			
+				<p class="px-3 py-3 mb-0">Vous pouvez déplacer les étapes en glissant les éléments dans la liste ci-dessous.</p>
+
+				<ul class="list-group list-group-flush" style="min-height: 10px;">
+
+					<draggable @end="step_order_update();force_refresh('steps drag')" v-model="steps_list" :options="{ group:'steps_list', dragClass:'dragItem', ghostClass:'dropHere'}">
+						<li class="list-group-item" v-for="(element,i) in steps_list" :key="i" @click="click_fct" :name="i" :class="{ selected_drag: (i)==step_index }">{{ i+1 }}. <span :name="i" v-if="steps_list[i].step_properties.step_type<=9999">{{ steps_list[i].step_properties.step_name }}</span><span :name="i" v-if="steps_list[i].step_properties.step_type==10001">Grille de raisonnement structuré</span><span class="position-relative arrowred1" style="z-index:999;" v-if="i==step_index" @click="delete_step"> <i style="color:red;font-size:100%;" class=" bi-trash pt-0 mt-0 ml-3"></i> </span></li>
+						<li class="list-group-item" v-if="steps_list.length === 0"></li>
+					</draggable>
+
+				</ul>
+
+				<button type="button" @click="add_step" class="btn btn-primary mt-0 w-100 text-left pl-3"><i class="bi-file-plus mr-1 "></i> Ajouter une étape</button>
+
+			</div>
+
+		</div>
+
+
+		<!--
+		<div id="briefing" class="" v-if="option0==101">
+
+			<div class="card mt-3" style="background-color:rgb(245,245,245);">
+				<p class="px-3 py-3 mb-0 ">Écrivez le texte qui est présenté à l'ouverture du cas.</p>
+				<ckeditor v-model="case_properties.briefing"></ckeditor>
+			</div>
+
+		</div>
+		-->
+
+
+
+		<div id="final_contents" class="mt-5" v-if="option0==102">
+
+			<div class="card mt-3">
+				<h6  class="px-2 py-1">Debriefing</h6>
+				<ckeditor v-model="case_end_properties.debriefing"></ckeditor>
+			</div>
+			<div class="card mt-3">
+				<h6  class="px-2 py-1">Références</h6>
+				<ckeditor v-model="case_end_properties.references"></ckeditor>
+			</div>
+			<div class="card mt-3">
+				<h6  class="px-2 py-1">Mentions</h6>
+				<ckeditor v-model="case_end_properties.mentions"></ckeditor>
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+
+
+
+	<div class="col-3 colsp">
+		<!-- SECOND COLUMN -->
+
+
+		<!-- Briefing -->
+		<div id="briefing_blocks" class="mt-3" v-if="option0==0">
+
+			<div class="card" style="background-color:rgb(245,245,245);">
+				<p class="px-3 py-3 mb-0 ">Vous pouvez déplacer les étapes en glissant les éléments dans la liste ci-dessous.</p>
+
+				<ul class="list-group list-group-flush" style="min-height: 10px;">
+					<draggable @end="force_refresh('info_blocks drag')" v-model="case_properties.briefing" :options="{ group:'steps_list', dragClass:'dragItem', ghostClass:'dropHere'}">
+						<li class="list-group-item" v-for="(element,i) in case_properties.briefing" :key="i" @click="click_briefing" :name="i" :class="{ selected_drag2: i==briefing_index }">{{ i+1 }}. {{ element.title }}<span class="position-relative " v-if="i==briefing_index"> <i style="color:red;font-size:100%;" @click="delete_briefing" class=" bi-trash pt-0 mt-0 ml-3"></i> </span></li>
+						<li class="list-group-item" v-if="case_properties.briefing.length === 0"></li>
+					</draggable>
+				</ul>
+			</div>
+			<button type="button" @click="add_briefing" class="btn btn-primary mt-0 w-100 text-left pl-3"><i class="bi-journal-plus" class="mr-3"></i> Ajouter un bloc d'introduction</button>
+
+		</div>
+
+
+		<!-- Steps -->
+		<div v-if="(steps_list.length > 0) && (option0==2)">
+			<!-- Step -->
+
+
+			<div class="row">
+				<div class="col text-center pb-1" :class="{'top_button_ns1': option1!=0, 'top_button_s1': option1==0}" @click="option1=0" @mouseover="hover2 = true ; hover_info2=['','','',''] ; hover_info2[1]='Paramètres de l\'étape' " @mouseleave="hover2 = false; "><i class="bi-gear"></i></div>
+				<div class="col text-center pb-1" :class="{'top_button_ns1': option1!=1, 'top_button_s1': option1==1}" v-if="steps_list[step_index].step_properties.step_type <= 9999" @click="option1=1" @mouseover="hover2 = true ; hover_info2=['','','',''] ; hover_info2[2]='Blocs d\'information' " @mouseleave="hover2 = false; "><i class="bi-info-circle"></i></div>
+				<div class="col text-center pb-1" :class="{'top_button_ns1': option1!=2, 'top_button_s1': option1==2}" v-if="steps_list[step_index].step_properties.step_type <= 9999" @click="option1=2" @mouseover="hover2 = true ; hover_info2=['','','',''] ; hover_info2[3]='Blocs de question' " @mouseleave="hover2 = false; "><i class="bi-pen"></i></div>
+			</div>
+
+
+
+			<div id="step_parameters" v-if="option1==0">
+
+				<div v-if="steps_list.length > 0">
+
+					<div class="card mt-3">
+						<h6 class="px-2 py-1">Type d'étape</h6>
+						<select style="width:100%;min-width:100%;" v-model="steps_list[step_index].step_properties.step_type" class="form-control">
+							<option value="1">Page standard</option>
+							<option value="10001">Grille de raisonnement structuré</option>
+						</select>
+					</div>
+
+					<!-- Show name -->
+					<div v-if="steps_list[step_index].step_properties.step_type <= 9999" class="card mt-3">
+						<h6 class="px-2 py-1">Nom de l'étape</h6>
+						<input autocomplete="off" type="text" style="width:100%;min-width:100%;" class="form-control" v-model="steps_list[step_index].step_properties.step_name">
+					</div>
+
+					<p class="mt-3"><input type="checkbox" class="mr-1" id="showanswerbox" v-model="steps_list[step_index].step_properties.show_answer"><label for="showanswerbox">Afficher les réponses aux étudiantes et étudiants une fois les réponses soumises.</label></p>
+
+				</div>
+
+			</div>
+
+
+
+			<div id="info_blocks" class="mt-3" v-if="(steps_list[step_index].step_properties.step_type <= 9999) && (option1 == 1)">
+
+				<!-- Blocs d'information -->
+				<div class="card" style="background-color:rgb(245,245,245);">
+					<p class="px-3 py-3 mb-0 ">Vous pouvez déplacer les étapes en glissant les éléments dans la liste ci-dessous.</p>
+
+					<ul class="list-group list-group-flush" style="min-height: 10px;">
+						<draggable @end="force_refresh('info_blocks drag')" v-model="step_selected['step_informations_list']" :options="{ group:'steps_list', dragClass:'dragItem', ghostClass:'dropHere'}">
+							<li class="list-group-item" v-for="(element,i) in step_selected['step_informations_list']" :key="i" @click="click_information" :name="i" :class="{ selected_drag2: i==information_index }">{{ i+1 }}. <span :name="i" v-if="element.type == 101">Diagnostic différentiel</span><span :name="i" v-if="element.type != 101">{{ element.title }}</span><span class="position-relative " v-if="i==information_index"> <i style="color:red;font-size:100%;" @click="delete_information" class=" bi-trash pt-0 mt-0 ml-3"></i> </span></li>
+							<li class="list-group-item" v-if="step_selected['step_informations_list'].length === 0"></li>
+						</draggable>
+					</ul>
+
+					<button type="button" @click="add_information" class="btn btn-primary mt-0 w-100 text-left pl-3"><i class="bi-journal-plus" class="mr-3"></i> Ajouter un bloc d'information</button>
+
+				</div>
+
+			</div>
+
+
+
+			<div id="answer_blocks" class="mt-3" v-if="(steps_list[step_index].step_properties.step_type <= 9999) && (option1 == 2)">
+
+				<!-- Blocs de question -->
+				<div class="card" style="background-color:rgb(245,245,245);">
+					<p class="px-3 py-3 mb-0 ">Vous pouvez modifier l'ordre des blocs en glissant les éléments dans la liste ci-dessous.</p>
+
+
+					<ul class="list-group list-group-flush" style="min-height: 10px;">
+						<draggable @end="force_refresh('answer_blocks drag')" v-model="step_selected['step_answers_list']" :options="{ group:'steps_list', dragClass:'dragItem', ghostClass:'dropHere'}">
+							<li class="list-group-item" v-for="(element,i) in step_selected['step_answers_list']" :key="i" @click="click_answer" :name="i" :class="{ selected_drag2: i==answer_index }">{{i+1}}. <span :name="i" v-if="element.type == 1">Hypothèses diagnostiques</span><span :name="i" v-if="element.type != 1">{{ element.title }}</span><span v-if="i==answer_index"> <i style="color:red;font-size:100%;" @click="delete_answer" class=" bi-trash pt-0 mt-0 ml-3"></i> </span></li>
+							<li class="list-group-item" v-if="step_selected['step_answers_list'].length === 0"></li>
+						</draggable>
+					</ul>
+
+					<button type="button" @click="add_answer" class="btn btn-primary mt-0 w-100 text-left pl-3"><i class="bi-journal-plus" class="mr-3"></i> Ajouter un bloc de question</button>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div v-if="option0 == 102">
+			<!-- End contents -->
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Résolution</h6>
+				<ckeditor v-model="case_end_properties.resol"></ckeditor>
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Rétroactions</h6>
+				<div class="card" style="background-color:rgb(245,245,245);">
+
+					<!-- Blocs de rétroaction -->
+					<p class="px-3 py-3 mb-0">Vous pouvez déplacer les étapes en glissant les éléments dans la liste ci-dessous.</p>
+
+					<ul class="list-group list-group-flush" style="min-height: 10px;">
+						<draggable @end="force_refresh('card drag')" v-model="case_end_properties.retroactions_list" :options="{ group:'case_end_retroaction', dragClass:'dragItem', ghostClass:'dropHere'}">
+							<li class="list-group-item" v-for="(element,i) in case_end_properties.retroactions_list" :key="i" @click="retroaction_index = i" :name="i" :class="{ selected_drag2: i==retroaction_index }">{{ i+1 }}. {{ element.title }} <span class="position-relative " v-if="i==retroaction_index"> <i style="color:red;font-size:100%;" @click="delete_retroaction" class=" bi-trash pt-0 mt-0 ml-3"></i> </span></li>
+							<li class="list-group-item" v-if="case_end_properties.retroactions_list.length === 0"></li>
+						</draggable>
+					</ul>
+					<button type="button" @click="add_retroaction" class="btn btn-primary w-100 text-left"><i class="bi-journal-plus" class="mr-3"></i> Ajouter un bloc de rétroaction</button>
+				
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+
+	<div class="col-6 colsp">
+		<!-- THIRD COLUMN -->
+
+		
+		<!-- Introduction block -->
+		<div v-if="option0==0">
+
+			<div v-if="case_properties.briefing.length > 0">
+
+				<div class="row">
+					<div class="pl-3 text-dark w-100 col-10" style="background-color:rgb(240,240,240);"></div>
+				</div>
+
+				<div class="card mt-3">
+					<h6 class="px-2 py-1">Titre du bloc</h6>
+					<input type="text" style="width:100%;min-width:100%;" class="form-control" v-model="case_properties['briefing'][briefing_index]['title']" />
+				</div>
+
+				<div class="card mt-3">
+					<h6 class="px-2 py-1">Contenu</h6>
+					<ckeditor v-model="case_properties['briefing'][briefing_index]['html']"></ckeditor>
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<div v-if="option0==2">
+
+			<!-- Information or question block -->
+			<div id="info_contents" v-if="(steps_list.length > 0) && (steps_list[step_index].step_properties.step_type <= 9999) && (option1 == 1) ">
+
+				<div v-if="step_selected['step_informations_list'].length > 0">
+
+					<div class="row">
+						<div class="pl-3 text-dark w-100 col-10" style="background-color:rgb(240,240,240);"></div>
+					</div>
+
+
+					<div class="card mt-3">
+						<h6 class="px-2 py-1">Type d'information</h6>
+						<select @change="force_step_update('Type d information')" style="width:100%;min-width:100%;" v-model="step_selected['step_informations_list'][information_index]['type']" class="form-control">
+							<option value="1000">Texte</option>
+							<option value="10000">Tableau</option>
+							<option value="1">Image seulement</option>
+							<option value="101">Diagnostic différentiel</option>
+						</select>
+					</div>
+
+					<div class="card mt-3" v-if="step_selected['step_informations_list'][information_index]['type'] != 101">
+						<h6 class="px-2 py-1">Titre du bloc</h6>
+						<input type="text" style="width:100%;min-width:100%;" @keyup="force_step_update('Titre du bloc')" class="form-control" v-model="step_selected['step_informations_list'][information_index]['title']" />
+					</div>
+
+
+					<!-- Image -->
+					<div class="card mt-3 px-3 py-3" v-if="step_selected['step_informations_list'][information_index]['type'] == 1">
+						<p><input type="file" style="width:100%;min-width:100%;" @change="previewFiles"></p>
+						<div v-if=" step_selected['step_informations_list'][information_index]['image'] ">
+							<p class="mt-3"><img style="width:100%;height:auto;" :src="step_selected['step_informations_list'][information_index]['image']"></p>
+						</div>
+					</div>
+
+					<!-- Text -->
+					<div class="card mt-3" v-if=" (step_selected['step_informations_list'][information_index]['type'] >= 1000) && (step_selected['step_informations_list'][information_index]['type'] <= 9999) ">
+						<h6 class="px-2 py-1">Contenu</h6>
+						<ckeditor @input="force_step_update('Information text')" v-model="step_selected['step_informations_list'][information_index]['html']"></ckeditor>
+					</div>
+
+					<!-- Tables -->
+					<div v-if="step_selected['step_informations_list'][information_index]['type'] >= 10000">
+
+						<div class="card mt-3">
+							<h6 class="px-2 py-1">Type de tableau</h6>
+							<select @change="force_step_update('Type de tableau')" style="width:100%;min-width:100%;" v-model="step_selected['step_informations_list'][information_index]['subtype']" class="form-control">
+								<option value="3001">Formule sanguine</option>
+							</select>
+						</div>
+
+						<div class="card mt-3">
+							<table class="table" v-if="step_selected['step_informations_list'][information_index]['subtype'] == 3001">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th>Biomarqueur</th>
+										<th>Mesure</th>
+										<th>Unité</th>
+									</tr>
+								</thead>
+								<tr v-for="(row,i) in step_selected['step_informations_list'][information_index]['table']" :key="i">
+									<td><button type="button" class="btn btn-secondary" @click="deleteRow(i)"><i class="bi-trash"></i></button></td>
+									<td><button type="button" class="btn btn-secondary" @click="changeRow(i,-1)"><i class="bi-arrow-up"></i></button></td>
+									<td><button type="button" class="btn btn-secondary" @click="changeRow(i,+1)"><i class="bi-arrow-down"></i></button></td>
+									<td><input @keyup="force_step_update('Tableau row[0]')" class="form-control" type="text" v-model='row[0]'></td>
+									<td><input @keyup="force_step_update('Tableau row[1]')" class="form-control" v-model='row[1]'></td>
+									<td><input @keyup="force_step_update('Tableau row[2]')" class="form-control" v-model='row[2]'></td>
+								</tr>
+							</table>
+
+							<button type="button" v-if="step_selected['step_informations_list'][information_index]['subtype'] >= 1000" class="btn btn-primary w-100" @click="addRow"><i class="bi-plus"></i> Ajouter une ligne</button>
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+
+			<div id="answer_contents" v-if=" (steps_list.length > 0) && (steps_list[step_index].step_properties.step_type <= 9999)  && (option1 == 2) ">
+
+				<div v-if="step_selected['step_answers_list'].length > 0">
+
+
+					<div class="row">
+						<div class="pl-3 text-dark w-100 col-10" style="background-color:rgb(240,240,240);"></div>
+					</div>
+
+
+					<div class="card mt-3">
+						<h6 class="px-2 py-1">Type de question</h6>
+						<select style="width:100%;min-width:100%;" v-model="step_selected['step_answers_list'][answer_index]['type']" class="form-control" @change="verifyRetro">
+							<option value="1">Hypothèses diagnostiques</option>
+							<option value="1001">Liste préétablie de diagnostics à ordonner</option>
+							<option value="1101">Liste préétablie avec un élément à sélectionner</option>
+							<option value="1102">Liste préétablie avec un ou plusieurs éléments à sélectionner</option>
+							<option value="1500">Liste longue avec éléments à sélectionner</option>
+							<option value="10001">Texte long à rédiger</option>
+							<option value="10011">Texte court à rédiger</option>
+						</select>
+					</div>
+
+
+					<div v-if="step_selected['step_answers_list'][answer_index]['type'] >= 1000">
+
+						<div class="card mt-3">
+							<h6 class="px-2 py-1">Question</h6>
+							<div class="grow-wrap">
+								<textarea @keyup="force_step_update('Question')" v-model="step_selected['step_answers_list'][answer_index]['title']" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" OnFocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+							</div>
+						</div>
+
+						<!-- Liste avec éléments à sélectionner ou à ordonner -->
+						<div v-if="step_selected['step_answers_list'][answer_index]['type'] <= 1499">
+							<div class="card mt-3">
+								<h6 class="px-2 py-1">Éléments de la liste</h6>
+
+								<p class="px-2" v-if="step_selected['step_answers_list'][answer_index]['type'] < 1100">Veuillez placer les éléments dans l'ordre approprié. Ces éléments seront montrés de façon aléatoire aux étudiants et étudiants.</p>
+								<p class="px-2" v-if="step_selected['step_answers_list'][answer_index]['type'] >= 1100">Veuillez spécifier le ou les éléments qui devraient être sélectionnés en cliquant sur les boutons <i class="bi-x"></i> et <i class="bi-check2"></i>.</p>
+
+								<table class="table">
+									<tr v-for="(row,i) in step_selected['step_answers_list'][answer_index]['elements_list']" :key="i">
+										<td v-if="step_selected['step_answers_list'][answer_index]['type'] < 1100"><h5 class="mt-2">{{ i+1 }}</h5></td>
+										<td><button type="button" class="btn btn-secondary" @click="deleteRowA(i)"><i class="bi-trash"></i></button></td>
+										<td><button type="button" class="btn btn-secondary" @click="changeRowA(i,-1)"><i class="bi-arrow-up"></i></button></td>
+										<td><button type="button" class="btn btn-secondary" @click="changeRowA(i,+1)"><i class="bi-arrow-down"></i></button></td>
+										<td v-if="step_selected['step_answers_list'][answer_index]['type'] >= 1100">
+											<button type="button" class="btn" :class="{'btn-danger':step_selected['step_retros_list'][answer_index]['elements_list'][i][0] == false,'btn-success':step_selected['step_retros_list'][answer_index]['elements_list'][i][0]}" @click="ChangeAnswerA(i)">
+												<span v-if="step_selected['step_retros_list'][answer_index]['elements_list'][i][0] == false"><i class="bi-x"></i></span>
+												<span v-if="step_selected['step_retros_list'][answer_index]['elements_list'][i][0]"><i class="bi-check2"></i></span>
+											</button>
+										</td>
+										<td><input @keyup="force_step_update('RowA')" class="form-control" type="text" list="cim10codes" autocomplete="off" v-model='row[0]'></td>
+									</tr>
+								</table>
+								<button type="button" class="btn btn-primary mt-0 w-100" @click="addRowA"><i class="bi-plus"></i> Ajouter un élément</button>
+
+							</div>
+						</div>
+
+						<!-- Éléments à sélectionner dans une longue liste -->
+						<div v-if="step_selected['step_answers_list'][answer_index]['type'] == 1500">
+							<div class="card mt-3">
+								<h6 class="px-2 py-1">Liste disponible aux étudiants</h6>
+								<select style="width:100%;min-width:100%;" v-model="step_selected['step_answers_list'][answer_index]['list']" class="form-control">
+									<option value="0">CIM10 complet</option>
+									<option value="1">CIM10 abrégé</option>
+									<option value="50">Liste maison</option>
+								</select>
+							</div>
+						</div>
+
+						<div v-if="(step_selected['step_answers_list'][answer_index]['type'] >= 10000) ">
+							<div class="card mt-3">
+								<h6 class="px-2 py-1">Votre réponse d'expert (optionnel)</h6>
+							</div>
+							<div v-if="step_selected['step_answers_list'][answer_index]['type'] == 10001">
+								<ckeditor @input="force_step_update('Réponse longue')" v-model="step_selected['step_retros_list'][answer_index]['html']"></ckeditor>
+							</div>
+							<div v-if="step_selected['step_answers_list'][answer_index]['type'] == 10011">
+								<input @keyup="force_step_update('Réponse courte')" style="width:100%;min-width:100%;" type="text" list="cim10codes" autocomplete="off" v-model="step_selected['step_retros_list'][answer_index]['short_answer']" class="form-control">
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div v-if="(option0 == 102) && (case_end_properties.retroactions_list.length > 0)">
+			<!-- Retroaction block -->
+
+			<div class="row">
+				<div class="pl-3 text-dark w-100 col-10" style="background-color:rgb(240,240,240);"></div>
+			</div>
+
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Titre</h6>
+				<input @keyup="force_refresh('Rétroaction titre')" type="text" style="width:100%;min-width:100%;" class="form-control" v-model="case_end_properties.retroactions_list[retroaction_index].title" />
+			</div>
+
+			<div class="card mt-3">
+				<h6 class="px-2 py-1">Contenu</h6>
+				<ckeditor v-model="case_end_properties.retroactions_list[retroaction_index].contents"></ckeditor>
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+
+</div>

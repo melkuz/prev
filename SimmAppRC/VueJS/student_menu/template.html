@@ -1,0 +1,812 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- template.html - student menu                                                                                      -->
+<!----------------------------------------------------------------------------------------------------------------------->
+
+
+<!-- Initial configuration menu -->
+<div class="pageContainer-content">
+    <div class="wrapper wrapper_big">
+        <div class="welcome">
+            <div class="welcome-left">
+                <div class="text text_center">
+                    <h1 class="welcome-Title">Bienvenue chez Siracle!</h1>
+                    <h5 class="h5_pale">Le système d’aide à l’étude qui t’aide à réaliser des diagnostics sur des cas réels!</h5>
+                </div>
+                <div class="welcome-siracle">
+                    <svg width="260" height="249" viewBox="0 0 260 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_8_937)">
+                            <path d="M86.335 199.135H174.715C201.952 199.135 224.047 221.292 224.047 248.564V248.915H37.0033V248.564C37.0033 221.274 59.1169 199.135 86.335 199.135Z" fill="url(#paint0_linear_8_937)"></path>
+                            <path d="M180.336 190.291H79.664C52.317 191.842 35.8977 221.736 35.3817 209.752C34.4418 188.075 35.1237 157.37 35.1237 145.663V72.804C35.1237 48.1544 55.0627 28.1762 79.664 28.1762H180.354C204.956 28.1762 224.895 48.1544 224.895 72.804V145.663C224.895 170.313 204.956 190.291 180.354 190.291H180.336Z" fill="url(#paint1_linear_8_937)"></path>
+                            <path d="M169.347 51H89.6533C71.0671 51 56 66.1583 56 84.857V137.143C56 155.842 71.0671 171 89.6533 171H169.347C187.933 171 203 155.842 203 137.143V84.857C203 66.1583 187.933 51 169.347 51Z" fill="#CCEDDE"></path>
+                            <path d="M124 107.601C124 118.427 117.205 99.933 109.196 99.933C101.187 99.933 95 118.427 95 107.601C95 96.7747 101.483 88 109.492 88C117.501 88 123.984 96.7747 123.984 107.601H124Z" fill="url(#paint2_linear_8_937)"></path>
+                            <path d="M166 107.601C166 118.427 159.205 99.933 151.196 99.933C143.187 99.933 137 118.427 137 107.601C137 96.7747 143.483 88 151.492 88C159.501 88 165.984 96.7747 165.984 107.601H166Z" fill="url(#paint3_linear_8_937)"></path>
+                            <path d="M100.49 127.118C101.401 122.756 95.6708 117.864 87.6915 116.191C79.7122 114.518 72.5052 116.697 71.5942 121.059C70.6831 125.421 76.4131 130.313 84.3924 131.986C92.3717 133.66 99.5788 131.48 100.49 127.118Z" fill="url(#paint4_linear_8_937)"></path>
+                            <path d="M177.01 130.954C184.95 129.103 190.569 124.084 189.561 119.744C188.553 115.403 181.299 113.385 173.359 115.237C165.419 117.088 159.8 122.107 160.808 126.448C161.816 130.788 169.07 132.806 177.01 130.954Z" fill="url(#paint5_linear_8_937)"></path>
+                        </g>
+                        <defs>
+                            <linearGradient id="paint0_linear_8_937" x1="130.525" y1="199.135" x2="130.711" y2="259.582" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#240035"></stop>
+                                <stop offset="1" stop-color="#47006A"></stop>
+                                <stop offset="1" stop-color="#47006A"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear_8_937" x1="129.89" y1="28.1762" x2="130" y2="126.591" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#370250"></stop>
+                                <stop offset="1" stop-color="#47006A"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint2_linear_8_937" x1="109.5" y1="88" x2="109.5" y2="111" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00A759"></stop>
+                                <stop offset="1" stop-color="#008436"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint3_linear_8_937" x1="151.5" y1="88" x2="151.5" y2="111" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00A759"></stop>
+                                <stop offset="1" stop-color="#008436"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint4_linear_8_937" x1="89.5079" y1="113.079" x2="79.5512" y2="135.12" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#DACCE1"></stop>
+                                <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint5_linear_8_937" x1="173.359" y1="115.237" x2="177.023" y2="130.951" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#DACCE1"></stop>
+                                <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                            </linearGradient>
+                            <clipPath id="clip0_8_937">
+                                <rect width="260" height="248.915" fill="white"></rect>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+            <div class="welcome-right">
+                <div class="messagesContainer">
+                    <div class="message" v-if="page_initial_menu>=0">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Bonjour! Je m’appelle SIRACLE et je serai votre compagnon virtuel pour l’apprentissage du raisonnement clinique et la pratique du diagnostic différentiel!</p>
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=1">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Avant de vous donner accès à la liste des cas, j’ai besoin de te poser quelques questions.</p>
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=2">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Tout d’abord, es-tu médecin ou étudiant en médecine?</p>
+                        </div>
+                    </div>
+                    <div class="message message_user" v-if="page_initial_menu>=2">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+
+                            <div class="message-btns">
+                                <span v-for="status in ['Étudiant','Médecin']">
+                                    <button type="button" class="btn" @click="user_info.statut_etude=status" :class="{btn_primary:user_info['statut_etude']==status, btn_secondary:user_info['statut_etude']!=status }">{{ status }}</button>
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=3">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+
+                        <div class="message-text text">
+                            <p>En quelle année as-tu débuté le programme de formation?</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="message message_user" v-if="page_initial_menu>=3">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+                            <input type="number" min="2000" max="2025" step="1" value="2023" v-model="user_info.annee_debut_formation" />
+
+                        </div>
+                    </div>
+
+
+                    <div class="message" v-if="page_initial_menu>=4">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>En quelle année as-tu où prévois-tu débuter ton externat?</p>
+                        </div>
+                    </div>
+
+                    <div class="message message_user" v-if="page_initial_menu>=4">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+                            <input type="number" min="2000" max="2099" step="1" value="2023" v-model="user_info.annee_debut_externat" />
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=5">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>En quelle année as-tu ou prévois-tu terminer ta résidence?</p>
+                        </div>
+                    </div>
+
+                    <div class="message message_user" v-if="page_initial_menu>=5">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+                            <input type="number" min="2000" max="2050" step="1" value="2030" v-model="user_info.annee_fin_residence" />
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=6">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Quelle est la spécialité qui t’intéresse le plus à ce moment-ci, où quelle spécialité de la médecine exerces-tu présentement?</p>
+                        </div>
+                    </div>
+
+                    <div class="message message_user" v-if="page_initial_menu>=6">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+                            <input type="text" name="name" value="" v-model="user_info.specialite" />
+                        </div>
+                    </div>
+
+                  
+
+                    <div class="message" v-if="page_initial_menu>=7">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Parmi les aspects suivants du raisonnement clinique, lesquels aimerais tu particulièrement pratiquer?</p>
+                        </div>
+                    </div>
+
+                    <div class="message message_user" v-if="page_initial_menu>=7">
+                        <div class="message-icon">
+                            <img src="VueJS/css/img/user-image.jpg" alt="">
+                        </div>
+
+                        <div class="message-text text">
+                            <p>
+                                <select class="form-control" v-model="user_info.aspects_a_pratiquer">
+                                    <option value="Génération d'hypothèses diagnostiques">Génération d'hypothèses diagnostiques</option>
+                                    <option value="Formulation du problème">Formulation du problème</option>
+                                    <option value="Collecte de données orientée">Collecte de données orientée</option>
+                                    <option value="Structuration du raisonnement clinique">Structuration du raisonnement clinique</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="message" v-if="page_initial_menu>=8">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Merci! Ces informations apparaîtront dans votre profil d’utilisateur. Vous pourrez les modifier ultérieurement au besoin.</p>
+                        </div>
+                    </div>
+                    <div class="message" v-if="page_initial_menu>=9">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <radialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>Nous tenterons d’en tenir compte pour vous proposer une expérience d’apprentissage adaptée à vos besoins qui évolueront avec le temps.</p>
+                        </div>
+                    </div>
+                    <div class="message" v-if="page_initial_menu>=10">
+                        <div class="message-icon">
+                            <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="36" cy="36" r="36" fill="#DACCE1"></circle>
+                                <path d="M26.9311 48.0007H45.287C50.9439 48.0007 55.5328 52.4514 55.5328 57.9295V58H16.6853V57.9295C16.6853 52.4477 21.2781 48.0007 26.9311 48.0007Z" fill="url(#paint0_linear_8_1409)"></path>
+                                <path d="M46.4545 46.2241H25.5457C19.8659 46.5357 16.4557 52.5404 16.3486 50.1333C16.1534 45.7791 16.295 39.6111 16.295 37.2597V22.6243C16.295 17.6728 20.4362 13.6598 25.5457 13.6598H46.4583C51.5678 13.6598 55.709 17.6728 55.709 22.6243V37.2597C55.709 42.2111 51.5678 46.2241 46.4583 46.2241H46.4545Z" fill="url(#paint1_linear_8_1409)"></path>
+                                <path d="M44.1245 18.0402H27.4602C23.5737 18.0402 20.4231 21.084 20.4231 24.8387V35.338C20.4231 39.0927 23.5737 42.1365 27.4602 42.1365H44.1245C48.0109 42.1365 51.1616 39.0927 51.1616 35.338V24.8387C51.1616 21.084 48.0109 18.0402 44.1245 18.0402Z" fill="#CCEDDE"></path>
+                                <path d="M29.8709 33.5345C30.0601 32.6583 28.87 31.6756 27.2128 31.3395C25.5555 31.0034 24.0587 31.4412 23.8695 32.3174C23.6802 33.1935 24.8703 34.1763 26.5276 34.5124C28.1848 34.8484 29.6816 34.4106 29.8709 33.5345Z" fill="url(#paint2_linear_8_1409)"></path>
+                                <path d="M45.7636 34.3051C47.4127 33.9332 48.5798 32.9249 48.3705 32.0531C48.1611 31.1812 46.6545 30.7759 45.0055 31.1478C43.3564 31.5197 42.1893 32.5279 42.3986 33.3998C42.608 34.2716 44.1145 34.6769 45.7636 34.3051Z" fill="url(#paint3_linear_8_1409)"></path>
+                                <path d="M30.0807 30.4899C31.2851 30.4899 32.2614 29.546 32.2614 28.3815C32.2614 27.217 31.2851 26.2731 30.0807 26.2731C28.8763 26.2731 27.8999 27.217 27.8999 28.3815C27.8999 29.546 28.8763 30.4899 30.0807 30.4899Z" fill="url(#paint4_radial_8_1409)"></path>
+                                <path d="M42.2307 30.4899C43.3778 30.4899 44.3077 29.546 44.3077 28.3815C44.3077 27.217 43.3778 26.2731 42.2307 26.2731C41.0837 26.2731 40.1538 27.217 40.1538 28.3815C40.1538 29.546 41.0837 30.4899 42.2307 30.4899Z" fill="url(#paint5_radial_8_1409)"></path>
+                                <defs>
+                                    <linearGradient id="paint0_linear_8_1409" x1="36.1091" y1="48.0007" x2="36.1452" y2="60.1428" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#240035"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint1_linear_8_1409" x1="35.9772" y1="13.6598" x2="35.9986" y2="33.4285" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#370250"></stop>
+                                        <stop offset="1" stop-color="#47006A"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint2_linear_8_1409" x1="27.59" y1="30.7144" x2="25.6342" y2="35.1909" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="paint3_linear_8_1409" x1="45.0055" y1="31.1478" x2="45.7197" y2="34.315" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#DACCE1"></stop>
+                                        <stop offset="1" stop-color="#E2D4E9" stop-opacity="0.44"></stop>
+                                    </linearGradient>
+                                    <r  adialGradient id="paint4_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(30.0807 28.3815) rotate(90) scale(2.10843 2.18077)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                    <radialGradient id="paint5_radial_8_1409" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(42.2307 28.3815) rotate(90) scale(2.10843 2.07692)">
+                                        <stop offset="0.46875" stop-color="#009F51"></stop>
+                                        <stop offset="1" stop-color="#008A3C"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="message-text text">
+                            <p>N’hésitez-pas à faire appel à moi si vous avez des question! Je suis là pour vous et tenterez de vous répondre le plus rapidement possible et vous référer à une vraie personne au besoin!</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <p class="margin_auto">
+                            <button type="button" class="btn btn-primary " v-if="page_initial_menu > 0" @click="page_initial_menu = page_initial_menu - 1">&#8592;</button> <button type="button" class="btn btn-primary " @click="page_initial_menu = page_initial_menu + 1" v-if="page_initial_menu < 10">&#8594;</button> <button type="button" class="btn btn-primary" @click="send_user_info" v-if="page_initial_menu == 10">&#8594;</button>
+                        </p>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!--<div v-if="show_initial_menu">
+
+    <div class="row mt-5">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div v-if="page_initial_menu>=0">
+                <p>Bonjour!</p>
+            </div>
+            <div v-if="page_initial_menu>=1">
+                <p>Je m’appelle SIRACLE et je serai votre compagnon virtuel pour l’apprentissage du raisonnement clinique et la pratique du diagnostic différentiel!</p>
+            </div>
+            <div v-if="page_initial_menu>=2">
+                <p>Avant de vous donner accès à la liste des cas, j’ai besoin de te poser quelques questions.</p>
+            </div>
+            <div v-if="page_initial_menu>=3">
+                <p>Tout d’abord, es-tu médecin ou étudiant en médecine?</p>
+                <p>
+                    <select class="form-control" v-model="user_info.statut_etude">
+                        <option value="Étudiant">Étudiant</option>
+                        <option value="Médecin">Médecin</option>
+                    </select>
+                </p>
+            </div>
+            <div v-if="page_initial_menu>=4">
+                <p>En quelle année as-tu débuter le programme de formation?</p>
+                <p><input type="text" class="form-control" v-model="user_info.annee_debut_formation" /></p>
+            </div>
+            <div v-if="page_initial_menu>=5">
+                <p>En quelle année as-tu où prévois-tu débuter ton externat?</p>
+                <p><input type="text" class="form-control" v-model="user_info.annee_debut_externat" /></p>
+            </div>
+            <div v-if="page_initial_menu>=6">
+                <p>En quelle année as-tu ou prévois-tu terminer ta résidence?</p>
+                <p><input type="text" class="form-control" v-model="user_info.annee_fin_residence" /></p>
+            </div>
+            <div v-if="page_initial_menu>=7">
+                <p>Quelle est la spécialité qui t’intéresse le plus à ce moment-ci, où quelle spécialité de la médecine exerces-tu présentement?</p>
+                <p><input type="text" class="form-control" v-model="user_info.spacialite" /></p>
+            </div>
+            <div v-if="page_initial_menu>=8">
+                <p>Parmi les aspects suivants du raisonnement clinique, lesquels aimerais tu particulièrement pratiquer?</p>
+                <p>
+                    <select class="form-control" v-model="user_info.aspects_a_pratiquer">
+                        <option value="Génération d'hypothèses diagnostiques">Génération d'hypothèses diagnostiques</option>
+                        <option value="Formulation du problème">Formulation du problème</option>
+                        <option value="Collecte de données orientée">Collecte de données orientée</option>
+                        <option value="Structuration du raisonnement clinique">Structuration du raisonnement clinique</option>
+                    </select>
+                </p>
+            </div>
+            <div v-if="page_initial_menu>=9">
+                <p>Merci! Ces informations apparaîtront dans votre profil d’utilisateur. Vous pourrez les modifier ultérieurement au besoin.</p>
+            </div>
+            <div v-if="page_initial_menu>=10">
+                <p>Nous tenterons d’en tenir compte pour vous proposer une expérience d’apprentissage adaptée à vos besoins qui évolueront avec le temps.</p>
+            </div>
+            <div v-if="page_initial_menu>=11">
+                <p>N’hésitez-pas à faire appel à moi si vous avez des question! Je suis là pour vous et tenterez de vous répondre le plus rapidement possible et vous référer à une vraie personne au besoin!</p>
+            </div>
+
+            <button type="button" class="btn btn-primary" v-if="page_initial_menu > 0" @click="page_initial_menu = page_initial_menu - 1">&#8592;</button> <button type="button" class="btn btn-primary" @click="page_initial_menu = page_initial_menu + 1" v-if="page_initial_menu < 11">&#8594;</button> <button type="button" class="btn btn-primary" @click="send_user_info" v-if="page_initial_menu == 11">&#8594;</button>
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+</div>-->
+
+
+<!-- Case table -->
+<!--<div id="case_table" v-if="user_info_completed">
+
+    <button type="button" class="btn btn-outline-secondary mt-5" @click="user_info_completed=false; page_initial_menu=0; show_initial_menu=true;" >Retourner à l'introduction</button>
+
+    <h2 class="mt-5" >Liste de cas</h2>
+
+	<div class="row">
+		<div class="col-12">
+
+			<v-card-title>
+				<v-text-field v-model="search"
+							  append-icon="mdi-magnify"
+							  label="Rechercher"
+							  single-line
+							  hide-details>
+				</v-text-field>
+			</v-card-title>
+			<v-data-table   :headers="headers"
+							:items="cases"
+							:search="search"
+							:page.sync="page"
+							class="elevation-1"
+							@click:row="handleClick"
+							hide-default-footer
+							disable-pagination>
+			</v-data-table>
+
+		</div>
+	</div>
+
+</div>
+
+<div id="selected_case_menu" style="display:none">
+
+    <div class="row">
+        <div class="col-4">
+            <img style="max-height:250px;border-radius:12px" :src="selected_case_properties.image">
+        </div>
+        <div class="col-8">
+            <h1>{{ selected_case_properties.patient_name }}</h1>
+            <h3>{{ selected_case_properties.discipline }}</h3>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div v-if="selected_case_completions.length == 0">
+
+            <div class="col-12">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block" @click="new_trial()">Commencer</button>
+            </div>
+
+        </div>
+
+        <div v-if="selected_case_completions.length > 0">
+
+            <div class="col-12" v-if=" selected_case_completions[selected_case_completions.length - 1].completed == false">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-5" @click="continue_trial()">Continuer</button>
+
+                <h5>{{ selected_case_completions.length - 1 }} 
+                    <span v-if="selected_case_completions.length - 1 <= 1">essai complété</span>
+                    <span v-if="selected_case_completions.length - 1 >  1">essais complétés</span>
+                </h5>
+            </div>
+
+            <div class="col-12" v-if=" selected_case_completions[selected_case_completions.length - 1].completed == true">
+                <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-5" @click="new_trial()">Commencer un nouvel essai</button>
+
+                <h5>Revoir les essais complétés</h5>
+                <div class="list-group">
+                    <div v-for="(trial,i) in selected_case_completions" :key="i">
+                        <a href="javascript:void(0)" class="list-group-item list-group-item-action flex-column align-items-start" @click="select_trial(i)">
+                            <p class="mb-1 mt-1">Essai complété le {{ trial.last_date }}</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-5" onclick="$('#selected_case_menu').hide();$('#case_table').show();">Retourner au menu</button>
+    </div>
+
+</div>-->
+
+

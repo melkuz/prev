@@ -1,0 +1,28 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- index.html - admin case                                                                                           -->
+<!----------------------------------------------------------------------------------------------------------------------->
+<body lang="fr" translate="no">
+
+	<!-- CSS - Custom -->
+	<link rel="stylesheet" href="VueJS/admin_case/custom.css">
+
+	<datalist id="cim10codes"></datalist>
+
+
+	<div id="main" class="container-fluid"></div>
+
+	<script>
+		$(function () {
+			$("#main").load("VueJS/admin_case/template.html", function () {
+				console.log("template loaded")
+
+				$.getScript('VueJS/admin_case/ajax.js', function () {
+					$.getScript('VueJS/admin_case/scripts.js', function () {
+						console.log("Loading complete")
+					});
+				});
+			});
+		});
+	</script>
+
+</body>

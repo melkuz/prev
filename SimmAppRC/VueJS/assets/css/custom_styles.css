@@ -1,0 +1,186 @@
+
+
+/* Topbar */
+
+.bg-custom {
+    background-color: rgb(43, 3, 117);
+}
+
+
+
+/* Sidebar */
+
+.sb-sidenav-footer{
+    display: block;
+    height:69px;
+    text-align: center;
+}
+
+
+
+/* Dropdown menu */
+
+.dropdown-noa{
+    display:block;
+    margin-left:15px;
+    margin-right:15px;
+    font-style: italic;
+    margin-bottom:5px;
+}
+
+.dropdown-menu{
+    width:300px;
+}
+
+
+
+
+
+
+
+
+canvas{
+    margin: 0 auto;
+    width:100%;
+    height:400px;
+    max-width:400px;                
+}
+
+.selact{
+    background-color: rgb(235, 214, 27);
+}
+
+.selact:hover{
+    background-color: rgb(185, 168, 8);
+}
+
+a:hover {
+    cursor:pointer;
+}
+
+.items{
+    position: relative;
+    width: 100%;
+    display:inline-block;
+}
+
+.item{
+    position: absolute;
+    background-color: #fafafa;
+    background-image: linear-gradient(90deg, #e6e6e6 0px, #e6e6e6 37px, #fafafa 38px, #fafafa 100%);
+    width: 100%;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.75rem;
+    text-align: left;
+    padding-left:0px;
+    cursor: pointer;
+    user-select: none;
+    transition: top 0.4s ease-out, left 0.4s ease-out;
+    border-radius: 5px;
+    border: 1px solid #b9b9b9;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    color:#2b2b2b;
+}
+
+.item[selected*='yes']{
+    transition: none;
+}
+
+.item_no_delete{
+    background-image: linear-gradient(90deg, #fafafa 0px, #fafafa 37px, #fafafa 38px, #fafafa 100%);
+}
+
+input{
+    width:100%;
+    padding:10px;
+}
+
+.fa-xmark{
+    color:rgb(148, 8, 8);
+}
+
+tr:hover{
+    background-color:rgb(233, 233, 233);
+}
+
+.cke_top
+{
+    display: none !important;
+}
+
+.ci{
+    color: #261a87;
+}
+
+.correction{
+    color:#c24517;
+}
+
+
+.card-header{
+    font-size: 1.3em;
+    color:white;
+}
+
+.card-header-info{
+    background-color:#060a8a;
+}
+
+.card-header-correction{
+    background-color:#c94106;
+}
+
+.card-body-correction{
+    color:#c94106;
+}
+
+.card-header-question{
+    background-color:#404040;
+}
+
+p{
+    margin:0.2em 0em;
+}
+
+.card-body p{
+    margin:0.4em 0.4em;
+}
+
+img{
+    width:auto;
+    height:auto;
+    max-width:300px;
+    max-height:300px;
+}
+
+.selected_retro{
+    background-color:rgb(230, 230, 230)
+}
+
+.sidenavo:hover{
+    cursor:pointer;
+}
+
+.close_button{
+    width:100%;
+    height:50px;
+    display:block;
+    background-color: rgb(250,250,250);
+    text-align:center;
+    padding-top:12px;
+    color:black;
+}
+
+.fa-xmark {
+    color: black;
+}
+
+.close_button:hover{
+    background-color: rgb(230,230,230);
+    cursor:pointer;
+}

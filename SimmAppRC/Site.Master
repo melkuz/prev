@@ -1,0 +1,139 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SimmAppRC.SiteMaster" %>
+<%@ Import Namespace="SimmAppRC.Models"%>
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - SIRACLE Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- CSS - Styles.css -->
+    <link href="VueJS/css/styles_design.css" rel="stylesheet" />
+    <!-- CSS - Styles.css -->
+    <link href="VueJS/css/styles.css" rel="stylesheet" />
+    
+
+	<!-- CSS - Bootstrap -->
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+	<!-- JS - Bootstrap -->
+	<%--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>--%>
+
+    <!-- JS - Vue.js -->
+    <script src='VueJS/js/libs/vue.js'></script>
+
+    <!-- JS - Vuetify -->
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+    <!-- JS - CKEditor -->
+    <script src="VueJS/js/ckeditor/ckeditor.js"></script>
+    <script src="VueJS/js/ckeditor-vuejs/dist/ckeditor.js"></script>
+
+   	<!-- JS - Sortable/Draggable -->
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/15.0.0/vuedraggable.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/sortable/0.8.0/js/sortable.js'></script>
+
+    <!-- JS - Site -->
+    <script src="VueJS/site.js"></script>
+
+</head>
+
+
+<body style="background-color:white;padding-top:0;">
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <%-- HEADER --%>
+
+
+        <header class="header pageContainer-header">
+            <div class="header-left">
+              <a class="header-logo" href="#">
+                <!-- logo.svg -->
+                <svg width="148" height="43" viewBox="0 0 148 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_109_1082)">
+                  <path d="M110.061 28.8078V33.4667L96.6543 33.4278V9.45557H98.7276C100.26 9.45557 101.501 10.7096 101.501 12.2577V28.769L110.061 28.8078Z" fill="currentColor"/>
+                  <path d="M145.289 3.32398V33.1434H140.008V5.83688H96.6495V3.04936C96.6495 1.6398 97.7824 0.5 99.1774 0.5H142.492C144.039 0.5 145.287 1.76131 145.287 3.32398H145.289Z" fill="currentColor"/>
+                  <path d="M93.9244 37.1631H148.002V39.8728C148.002 41.3237 146.838 42.5 145.402 42.5H96.5268C95.0909 42.5 93.9268 41.3237 93.9268 39.8728V37.1631H93.9244Z" fill="currentColor"/>
+                  <path d="M24.4847 13.9831C26.0667 13.9831 27.3492 12.6872 27.3492 11.0887C27.3492 9.49011 26.0667 8.19421 24.4847 8.19421C22.9026 8.19421 21.6201 9.49011 21.6201 11.0887C21.6201 12.6872 22.9026 13.9831 24.4847 13.9831Z" fill="currentColor"/>
+                  <path d="M117.642 14.1338V18.9628H127.809V23.6216H117.642V28.7908H128.725V33.4496H112.795V9.47498H126.06C127.532 9.47498 128.723 10.6804 128.723 12.1653V14.1314H117.639L117.642 14.1338Z" fill="currentColor"/>
+                  <path d="M71.0585 33.474H65.9114L63.9055 27.8187H57.3225V25.77C57.3225 24.3337 58.477 23.1623 59.9033 23.1623H62.2122L59.1023 14.4571L56.5889 21.4782L56.0141 23.0408H56.0093L55.9684 23.1623L54.3016 27.8187L54.2343 28.0132L53.7893 29.3012L52.2957 33.4716H47.1486L56.0526 9.48718H62.1858L71.0585 33.4716V33.474Z" fill="currentColor"/>
+                  <path d="M19.3376 25.9741C19.3376 31.5541 14.3204 33.474 10.323 33.474C3.44418 33.474 0.584431 29.5831 -2.66591e-05 25.4857C-0.00964736 25.42 0.0432665 25.3593 0.110611 25.3593H4.86324C5.50782 27.7215 6.93169 28.9221 10.2869 28.9221C13.0336 28.9221 14.4575 27.8941 14.4575 26.1831C14.4575 24.4722 12.7955 24.1636 8.62733 23.2377C4.38942 22.3457 0.596457 20.9435 0.596457 16.2166C0.596457 11.1835 5.03641 8.68274 9.5437 8.68274C15.915 8.68274 18.5583 12.141 19.1019 16.1145H14.1881C13.6806 14.4352 12.4949 13.2371 9.57978 13.2371C6.66471 13.2371 5.47656 14.4717 5.47656 16.0124C5.47656 17.4171 6.66231 17.7598 9.78182 18.4452C16.1195 19.8134 19.34 21.2181 19.34 25.979L19.3376 25.9741Z" fill="currentColor"/>
+                  <path d="M70.1998 21.0771C70.1998 14.022 75.3854 8.6803 82.4686 8.6803C88.128 8.6803 92.5343 12.2066 93.9245 17.3102H88.7389C87.6205 14.8459 85.35 13.3391 82.4349 13.3391C78.0647 13.3391 75.0799 16.5908 75.0799 21.0796C75.0799 25.5683 78.0623 28.82 82.4349 28.82C85.35 28.82 87.6205 27.3132 88.7389 24.8489H93.9245C92.5343 29.9525 88.1304 33.4788 82.4686 33.4788C75.3854 33.4788 70.1998 28.1371 70.1998 21.082V21.0771Z" fill="currentColor"/>
+                  <path d="M24.5111 15.8521C25.8653 15.8521 26.9644 16.6589 26.9644 17.6529V31.1482C26.9644 32.4387 25.5406 33.4837 23.7824 33.4837H22.0579V17.6529C22.0579 16.6589 23.157 15.8521 24.5111 15.8521Z" fill="currentColor"/>
+                  <path d="M40.443 24.3483C43.7934 23.4928 45.8258 21.0577 45.8258 17.1036C45.8258 12.2917 42.776 9.21252 37.6217 9.21252H29.6871V13.9273H37.0758C39.6156 13.9273 40.8399 15.1643 40.8399 17.179C40.8399 19.1937 39.6541 20.4112 37.0758 20.4112H29.6871V24.7274H34.9111L41.1213 33.474H47.1631L40.4454 24.3458L40.443 24.3483Z" fill="currentColor"/>
+                  </g>
+                </svg>
+              </a>
+            </div>
+
+            <div class="header-right">
+              <ul class="menu">
+                <li><a href="#">Liste des cas</a></li>
+              </ul>
+              <button class="notifications">
+                <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2.125V2.89844C15.0938 3.41406 17.5 6.12109 17.5 9.34375V10.8047C17.5 12.7383 18.1445 14.6289 19.3477 16.1758L19.9922 16.9492C20.25 17.293 20.293 17.7227 20.1211 18.0664C19.9492 18.4102 19.6055 18.625 19.2188 18.625H2.03125C1.60156 18.625 1.25781 18.4102 1.08594 18.0664C0.914062 17.7227 0.957031 17.293 1.21484 16.9492L1.85938 16.1758C3.0625 14.6289 3.75 12.7383 3.75 10.8047V9.34375C3.75 6.12109 6.11328 3.41406 9.25 2.89844V2.125C9.25 1.39453 9.85156 0.75 10.625 0.75C11.3555 0.75 12 1.39453 12 2.125ZM10.2812 4.875C7.78906 4.875 5.8125 6.89453 5.8125 9.34375V10.8047C5.8125 12.8672 5.21094 14.8438 4.09375 16.5625H17.1133C15.9961 14.8438 15.4375 12.8672 15.4375 10.8047V9.34375C15.4375 6.89453 13.418 4.875 10.9688 4.875H10.2812ZM13.375 20C13.375 20.7305 13.0742 21.4609 12.5586 21.9766C12.043 22.4922 11.3125 22.75 10.625 22.75C9.89453 22.75 9.16406 22.4922 8.64844 21.9766C8.13281 21.4609 7.875 20.7305 7.875 20H13.375Z" fill="currentColor"/>
+                </svg>                
+              </button>
+
+              <div class="user header-rightUser">
+                <div class="user-image">
+                  <!-- img src="images/placeholders/user-image.jpg" alt="" --> <!-- L'image est effacé parce que le bd ne sauvegarde pas d'images pour l'instant -->
+                </div>
+                <div class="user-name"><%=Utilisateur.Name%></div>
+              </div>
+            </div>
+      </header>
+
+
+        <span>
+            <% if (Utilisateur.RoleID != 100000) { %>
+                <a style="cursor:pointer;color:red" href="javascript:reset_admin_role(<%=Utilisateur.UserID%>)">Reset Admin Role</a>
+            <% } %>
+            <span style="display:none;">Version <%=SimmAppRC.Classes.AppData.Version%>(<%=SimmAppRC.Classes.AppData.DB_Version%>)</span>
+            <!--<span><%=Utilisateur.Name%></span> <span style="display:none;">(<%=Utilisateur.RoleName%>)</span> -->
+        </span>
+
+
+        <div class=" body-content" >
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer style="display:none;">
+                <p>&copy; <%: DateTime.Now.Year %> - UdeS - Prevalis</p>
+            </footer>
+        </div>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- index.html - student menu                                                                                         -->
+<!----------------------------------------------------------------------------------------------------------------------->
+<body>
+
+    <!-- CSS - Custom -->
+    <link rel="stylesheet" href="VueJS/student_menu/custom.css">
+
+    <!-- CSS - Vuetify -->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+    <div id="main"></div>
+
+    <script>
+        $(function ()
+        {
+            $("#main").load("VueJS/student_menu/template.html", function ()
+            {
+                console.log("template loaded")
+
+                $.getScript('VueJS/student_menu/ajax.js', function ()
+                {
+                    $.getScript('VueJS/student_menu/scripts.js', function ()
+                    {
+                        console.log("Loading complete")
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+

@@ -1,0 +1,53 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- index.html - student case                                                                                         -->
+<!----------------------------------------------------------------------------------------------------------------------->
+<body lang="fr" translate="no" class="sb-nav-fixed">
+
+	<!-- CSS - Custom -->
+	<link rel="stylesheet" href="VueJS/student_case/custom.css">
+
+
+	<!-- Lists -->
+	<datalist id="list_0">
+		<option value="Option1">
+		<option value="Option2">
+		<option value="Option3">
+		<option value="Option4">
+		<option value="Option5">
+	</datalist>
+	<datalist id="list_1">
+		<option value="Option1">
+		<option value="Option2">
+		<option value="Option3">
+		<option value="Option4">
+		<option value="Option5">
+		<option value="Option6">
+	</datalist>
+	<datalist id="list_50">
+		<option value="Option1">
+		<option value="Option2">
+		<option value="Option3">
+		<option value="Option4">
+		<option value="Option5">
+		<option value="Option6">
+		<option value="Option7">
+	</datalist>
+
+
+	<div id="main" style="display:none"></div>
+
+	<script>
+		$(function () {
+			$("#main").load("VueJS/student_case/template.html", function () {
+				console.log("(html) template loaded")
+
+				$.getScript('VueJS/student_case/ajax.js', function () {
+					$.getScript('VueJS/student_case/scripts.js', function () {
+						console.log("(js) Loading complete")
+					});
+				});
+			});
+		});
+	</script>
+
+</body>

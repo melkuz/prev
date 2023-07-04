@@ -1,0 +1,702 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- template.html - student case                                                                                      -->
+<!----------------------------------------------------------------------------------------------------------------------->
+
+<div id="notes_contents" style="position: absolute; top: 0px; left: 0px; z-index: 9999; width: 100%; background-color: white; display:none;">
+    <a onclick="$('#notes_contents').toggle();" class="close_button"> <div class="close_button">FERMER</div></a>
+    <div class="grow-wrap">
+        <textarea placeholder="Écrivez vos notes ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" onfocus="this.parentNode.dataset.replicatedValue = this.value" v-model="perso_notes" style="min-height:200px;"></textarea>
+    </div>
+    <div style="display:block;height:5px;width:100%;background-color:rgb(130,130,130);"></div>
+</div>
+
+<div id="layoutSidenav">
+
+    <div id="layoutSidenav_nav">
+
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+
+            <div class="sb-sidenav-menu">
+
+                <div class="nav">
+
+                    <div id="last_time_save">
+
+                    </div>
+
+                    <div>
+                        <a class="nav-link" @click="student_data_save(true)">Enregistrer le cas</a>
+                    </div>
+
+                    <div v-if="role_id >= 1000">
+                        <a class="nav-link" style="color:red" @click="delete_student_data()">Supprimer les données actuelles</a>
+                    </div>
+
+                    <div v-if="role_id >= 1000">
+                        <a class="nav-link" style="color:red" @click="access_case_editor()">Aller à l'éditeur de cas</a>
+                    </div>
+
+                    <!-- Menu -->
+                    <a class="nav-link " :class="{active: current_step_index == -1}" @click="current_step_index=-1">Briefing</a>
+                    <div v-for="i in steps_list.length">
+                        <div v-if=" (i-1) < steps_list.length ">
+
+                            <a class="nav-link" :class="{active: current_step_index == (i-1)}" v-if="(steps_list[i-1].step_properties.step_type == 1) 	&& (i-2 < nb_completed_steps)" @click="change_step(i-1)">{{ steps_list[i-1].step_properties.step_name }}</a>
+                            <a class="nav-link" :class="{active: current_step_index == (i-1)}" v-if="(steps_list[i-1].step_properties.step_type == 10001) && (i-2 < nb_completed_steps)" @click="change_step(i-1)">Grille Raisonnement Structuré</a>
+                        </div>
+                    </div>
+                    <a class="nav-link" :class="{active: current_step_index == steps_list.length}" v-if="nb_completed_steps >= steps_list.length" @click="change_step(steps_list.length)">Debriefing (1)</a>
+                    <a class="nav-link" :class="{active: current_step_index == steps_list.length+1}" v-if="nb_completed_steps >= (steps_list.length+1)" @click="change_step(steps_list.length+1)">Debriefing (2)</a>
+                    <a class="nav-link" :class="{active: current_step_index == steps_list.length+2}" v-if="nb_completed_steps >= (steps_list.length+2)" @click="change_step(steps_list.length+2)">Références et mentions</a>
+
+                </div>
+            </div>
+
+            <a onclick="$('#notes_contents').toggle();window.scrollTo(0, 0);"><div class="sb-sidenav-footer sidenavo" style="background-color:rgb(49,0,247);color:white;">Notes personnelles</div></a>
+
+        </nav>
+    </div>
+
+    <div id="layoutSidenav_content">
+
+        <main>
+            <div class="container-fluid ">
+
+                <!-- Title -->
+                <h1 class="mt-3">
+                    <span v-if="current_step_index == -1">Introduction</span>
+                    <span v-if="current_step_index == steps_list.length">Debriefing (1)</span>
+                    <span v-if="current_step_index == (steps_list.length+1)">Debriefing (2)</span>
+                    <span v-if="current_step_index == (steps_list.length+2)">Références et mentions</span>
+
+                    <span v-if="(current_step_index >= 0) && (current_step_index < steps_list.length) ">
+                        <span v-if="(steps_list[current_step_index].step_properties.step_type == 1)">{{ steps_list[current_step_index].step_properties.step_name }}</span>
+                        <span v-if="(steps_list[current_step_index].step_properties.step_type == 10001)">Grille Raisonnement Structuré</span>
+                    </span>
+                </h1>
+
+                <!-- Briefing page -->
+                <div v-if=" current_step_index == -1 ">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mt-4">
+                            <img style="width:100%;height:auto;" :src="case_properties.image" />
+                        </div>
+                        <div class="col-12 col-sm-6 mt-4">
+                            <div class="card mb-4 " v-for="(element,i) in case_properties.briefing" :key="i">
+                                <div class="card-header card-header-info px-3">{{ element.title }}</div>
+                                <div class="card-body">
+                                    <span v-html="element.html"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Answer page -->
+                <div v-if=" current_step_index == steps_list.length ">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <div class="card mt-4 ">
+                                <div class="card-header card-header-info px-3">Résolution du cas</div>
+                                <div class="card-body">
+                                    <span v-html="case_end_properties.resol"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <div class="card mt-4 ">
+                                <div class="card-header card-header-info px-3">Rétroactions</div>
+                                <div id="tab0" class="tab" v-if="tab_retro == -1">
+                                    <div class="card-body">
+                                        Cliquez sur les boutons ci-dessous pour parcourir les rétroactions.
+                                    </div>
+                                </div>
+                                <div v-for="(retro,i) in case_end_properties.retroactions_list" :key="i">
+                                    <a :id="'tab'+i+'_option'" @click="tab_retro = i" class=" card-footer d-flex align-items-center justify-content-between bl text-decoration-none retro_option" style="color:white;" :class="{'retro_option_selected': tab_retro==i}">
+                                        {{ case_end_properties.retroactions_list[i].title }}
+                                    </a>
+                                    <div class="tab" v-if="tab_retro == i">
+                                        <div class="card-body">
+                                            <span v-html="case_end_properties.retroactions_list[i].contents"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Debriefing -->
+                <div v-if=" current_step_index == steps_list.length + 1 ">
+                    <div class="row">
+
+                        <div class="col-12 col-sm-6 mt-4">
+                            <div class="card">
+                                <div class="card-header card-header-info px-3">Notes personnelles</div>
+                                <div class="card-body">
+                                    <span v-html="perso_notes"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-4">
+                            <div class="card">
+                                <div class="card-header card-header-info px-3">Suite à l’expérience simulée vécue avec cette patiente, quels apprentissages auriez-vous l’intention d’effectuer?​</div>
+                                <div class="grow-wrap" v-if="(nb_completed_steps) == (steps_list.length + 1)">
+                                    <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" end_data.learning "></textarea>
+                                </div>
+                                <div class="card-body" v-if="nb_completed_steps > (steps_list.length + 1)">
+                                    <span v-html="end_data.learning"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Reférence et mentions -->
+                <div v-if=" current_step_index == steps_list.length + 2 ">
+                    <div class="row">
+
+                        <div class="col-12 col-sm-6 mt-4">
+                            <div class="card">
+                                <div class="card-header card-header-info px-3">Références</div>
+                                <div class="card-body">
+                                    <span v-html="case_end_properties.references"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 mt-4">
+                            <div class="card">
+                                <div class="card-header card-header-info px-3">Mentions​</div>
+                                <div class="card-body">
+                                    <span v-html="case_end_properties.mentions"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--                                                    -->
+                <!-- Step pages                                         -->
+                <!--                                                    -->
+                <div v-if="(current_step_index >= 0) && (current_step_index < steps_list.length)">
+
+                    <!--                                                    -->
+                    <!-- Standard page (step_type 1)                        -->
+                    <!--                                                    -->
+                    <div class="row" v-if="steps_list[current_step_index].step_properties.step_type == 1">
+
+                        <!--                                                    -->
+                        <!-- Info blocks                                        -->
+                        <!--                                                    -->
+                        <div class="col-12 col-sm-6 " v-if=" step_selected.step_informations_list.length > 0 ">
+                            <div class="row ">
+                                <div class="col-12">
+
+                                    <div class="card mt-4 " v-for="selected_information in step_selected.step_informations_list">
+
+                                        <!-- Title -->
+                                        <div class="card-header card-header-info px-3">
+                                            <div style="float:left;"></div><div style="float:none;overflow:hidden;">
+                                                 <span v-if="selected_information.type != 101">  
+                                                    {{ selected_information.title }}
+                                                 </span>
+                                                 <span v-if="selected_information.type == 101">Diagnostic différentiel</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Image (type 1) -->
+                                        <div class="card-body" v-if="selected_information.type == 1">
+                                            <img :src="selected_information.image" style="width:100%;height:auto;">
+                                        </div>
+
+                                        <!-- Hypothèse évolutives (101) -->
+                                        <div class="card-body" v-if="selected_information.type == 101">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item pl-2" v-for="(element,j) in student_data.last_hypothesis_list" :key="j">{{ j+1 }}. {{ element[0] }}</li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Normal text (type 1000) -->
+                                        <div class="card-body" v-if="selected_information.type == 1000">
+                                            <span v-html="selected_information.html"></span>
+                                        </div>
+
+                                        <!-- Table -->
+                                        <div class="card-body" v-if="selected_information.type == 10000">
+                                            <table class="table">
+
+                                                <thead>
+                                                    <tr v-if="selected_information.subtype == 3001">
+                                                        <!--Biomarkers table-->
+                                                        <th scope="col">Biomarqueur</th>
+                                                        <th scope="col">Mesure</th>
+                                                        <th scope="col">Unité</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr v-for="row in selected_information.table">
+                                                        <td v-if="selected_information.subtype >= 1000">  {{ row[0] }} </td>
+                                                        <td v-if="selected_information.subtype >= 2000">  {{ row[1] }} </td>
+                                                        <td v-if="selected_information.subtype >= 3000">  {{ row[2] }} </td>
+                                                        <td v-if="selected_information.subtype >= 4000">  {{ row[3] }} </td>
+                                                        <td v-if="selected_information.subtype >= 5000">  {{ row[4] }} </td>
+                                                        <td v-if="selected_information.subtype >= 6000">  {{ row[5] }} </td>
+                                                        <td v-if="selected_information.subtype >= 7000">  {{ row[6] }} </td>
+                                                        <td v-if="selected_information.subtype >= 8000">  {{ row[7] }} </td>
+                                                        <td v-if="selected_information.subtype >= 9000">  {{ row[8] }} </td>
+                                                        <td v-if="selected_information.subtype >= 10000"> {{ row[9] }} </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                                                    -->
+                        <!-- END - Info blocks                                  -->
+                        <!--                                                    -->
+                        <!--                                                    -->
+                        <!-- Question blocks                                    -->
+                        <!--                                                    -->
+                        <div class="col-12 col-sm-6 " v-if=" step_selected.step_answers_list.length > 0 ">
+                            <div class="row">
+                                <div class="col-12 col-sm-12">
+                                    <div class="card mt-4" v-for="(selected_answer,i) in step_selected.step_answers_list" :key="i">
+                                        <!--                                                    -->
+                                        <!-- Block title                                        -->
+                                        <!--                                                    -->
+                                        <div class="card-header card-header-info px-3 ">
+                                            <div style="float:left;"></div><div style="float:none;overflow:hidden;">
+                                                <span v-if="selected_answer.type == 1">
+                                                    <span v-if="last_hypothesis_list.length == 0">
+                                                        Hypothèses précoces
+                                                    </span>
+                                                    <span v-if="last_hypothesis_list.length > 0">
+                                                        Hypothèses en évolution
+                                                    </span>
+                                                </span>
+                                                <span v-if="selected_answer.type >= 1000">{{ selected_answer.title }}</span>
+                                            </div>
+                                        </div>
+                                        <!--                                                    -->
+                                        <!-- END - Block title -- end                           -->
+                                        <!--                                                    -->
+                                        <!--                                                    -->
+                                        <!-- Hypothèses évolutives (type 1)                     -->
+                                        <!--                                                    -->
+                                        <div v-if="(selected_answer.type == 1) ">
+                                            <div v-if=" (current_step_index == nb_completed_steps) && (answers_current_steps == false) ">
+                                                <div class="card-body ">
+                                                    Ajoutez au moins 3 éléments. Vous pouvez ensuite glisser et déposer les éléments afin de modifier leur ordre. Vous pouvez aussi supprimer les éléments.
+                                                </div>
+                                                <div class="card">
+                                                    <div v-if="student_data_list[student_data_list.length-1][i].elements_list.length > 0">
+                                                        <ul class="list-group list-group-flush">
+                                                            <draggable @end="force_refresh('card drag')" v-model="student_data_list[student_data_list.length-1][i].elements_list" :options="{ group: 'sort_'+student_data_list.length+'_'+i , dragClass:'dragItem', ghostClass:'dropHere'}">
+                                                                <li class="list-group-item pl-2 border-top-grey" style="border-top: solid 1px rgb(221,224,236);"
+                                                                    v-for="(element,j) in student_data_list[student_data_list.length-1][i].elements_list" :key="j">
+                                                                    <span class="delete_trash"><a @click="delete_element(i,j)"><i class="bi-trash mr-1"></i></a></span>
+                                                                    <i class="bi-arrows-move mr-1"></i> {{ j+1 }}. {{element[0]}}
+                                                                </li>
+                                                                <li class="list-group-item" v-if="student_data_list[student_data_list.length-1][i].elements_list.length === 0"></li>
+                                                            </draggable>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <input type="text" class="form-control" style="width: 100%; min-width: 100%;" :id="'evol_hyp_new_'+i" placeholder="Inscrivez un nouvel élément" v-on:keyup.enter="onEnter(i)" v-model="new_hypothesis" rows="1" style="width: 100%; min-width: 100%;" />
+                                                </div>
+                                                <div class="card-body py-1 px-1">
+                                                    Appuyez sur ENTRÉE pour ajouter
+                                                </div>
+                                            </div>
+                                            <div class="card" v-if="(current_step_index < nb_completed_steps) || answers_current_steps">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item pl-2" v-for="(element,j) in student_data_list[current_step_index][i].elements_list" :key="j">{{ j+1 }}. {{element[0]}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!--                                                    -->
+                                        <!-- END - Hypothèses évolutives (type 1)               -->
+                                        <!--                                                    -->
+                                        <!--                                                    -->
+                                        <!-- Elements to order (type 1001)                      -->
+                                        <!-- Elements to add from list (type 1500)              -->
+                                        <!--                                                    -->
+                                        <div v-if="(selected_answer.type == 1001) || (selected_answer.type == 1500)">
+                                            <div v-if=" (current_step_index == nb_completed_steps) && (answers_current_steps == false) ">
+                                                <div class="card-body ">
+                                                    Glissez et déposez les éléments ci-dessous afin de modifier leur ordre.
+                                                </div>
+                                                <div class="card">
+                                                    <ul class="list-group list-group-flush">
+                                                        <draggable @end="force_refresh('card drag')" v-model="student_data_list[student_data_list.length-1][i].elements_list" :options="{ group: 'sort_'+student_data_list.length+'_'+i , dragClass:'dragItem', ghostClass:'dropHere'}">
+                                                            <li class="list-group-item pl-2" style="border-top: solid 1px rgb(221,224,236);" v-for="(element,j) in student_data_list[student_data_list.length-1][i].elements_list" :key="j">
+                                                                <span v-if="selected_answer.type == 1500" class="delete_trash"><a @click="delete_element(i,j)"><i class="bi-trash mr-1"></i></a></span>
+                                                                <i class="bi-arrows-move mr-1"></i> {{ j+1 }}. {{element[0]}}
+                                                            </li>
+                                                            <li class="list-group-item" v-if="student_data_list[student_data_list.length-1][i].elements_list.length === 0"></li>
+                                                        </draggable>
+                                                    </ul>
+                                                </div>
+                                                <div class="card" v-if="selected_answer.type == 1500">
+                                                    <span>
+                                                        <input type="text" class="form-control" style="width: 100%; min-width: 100%;" :id="'list_add_elem_'+i" placeholder="Inscrivez un nouvel élément" v-on:keyup.enter="onEnterList(i,selected_answer.list)" :list="'list_'+selected_answer.list" rows="1" style="resize:none;display:inline;margin-right:10px" />
+                                                        Recherchez dans la liste et appuyez sur Entrer pour ajouter dans la liste
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div v-if=" (current_step_index < nb_completed_steps) || answers_current_steps == true ">
+                                                <div class="card">
+                                                    <table class="table mb-0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Position</th>
+                                                                <th scope="col">Vos réponses</th>
+                                                                <th scope="col" v-if="(steps_list[current_step_index].step_properties.show_answer) && (selected_answer.type == 1001) && (show_answer_list[current_step_index])">Réponses suggérées</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="(element,j) in student_data_list[current_step_index][i].elements_list" :key="j">
+                                                                <td>{{ j+1 }}</td>
+                                                                <td>{{ student_data_list[current_step_index][i].elements_list[j][0] }}</td>
+                                                                <td v-if="(steps_list[current_step_index].step_properties.show_answer) && (selected_answer.type == 1001)  && (show_answer_list[current_step_index])">
+                                                                    <div v-if="step_selected.step_retros_list.length > 0">
+                                                                        {{ step_selected.step_answers_list[i].elements_list[j][0] }}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                                    -->
+                                        <!-- END - Elements to order (type 1001)                -->
+                                        <!--                                                    -->
+                                        <!--                                                    -->
+                                        <!-- Elements to select (type 1100 to 1199)             -->
+                                        <!--                                                    -->
+                                        <div v-if=" (selected_answer.type >= 1100) && (selected_answer.type <= 1199) ">
+
+                                            <div v-if=" (current_step_index == nb_completed_steps) && (answers_current_steps == false) ">
+                                                <div class="card-body " v-if="selected_answer.type == 1101">
+                                                    Sélectionnez un élément
+                                                </div>
+                                                <div class="card-body" v-if="selected_answer.type == 1102">
+                                                    Sélectionnez un ou plusieurs éléments
+                                                </div>
+                                                <div class="card">
+                                                    <ul class="list-group list-group-flush" v-for="(element,j) in selected_answer.elements_list" :key="j">
+                                                        <li class="list-group-item" style="padding:1px" @click="select_element(i,j)">
+
+                                                            <div v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == true">
+                                                                <div class="text-white bg-warning" style="padding:8px 16px">{{ element[0] }}</div>
+                                                            </div>
+                                                            <div v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == false">
+                                                                <div style="padding:8px 16px">{{ element[0] }}</div>
+                                                            </div>
+
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div v-if=" (current_step_index < nb_completed_steps) || (answers_current_steps == true)">
+
+                                                <div class="col-12 col-sm-6 " v-if=" step_selected.step_retros_list.length > 0 ">
+                                                    <div class="card-body text-white bg-info" v-if=" (step_selected.step_retros_list[i].html.length > 0) && (steps_list[current_step_index].step_properties.show_answer)  && (show_answer_list[current_step_index])">
+                                                        <span v-html="step_selected.step_retros_list[i].html"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+                                                    <div v-if="student_data_list[current_step_index][i].elements_list.length > 0 && steps_list[current_step_index].step_properties.show_answer  ">
+                                                        <div v-for="(element,j) in selected_answer.elements_list" :key="j">
+                                                            <div v-if="selected_answer.type == 1101 || 1102">
+                                                                <ul class="list-group list-group-flush">
+                                                                    <li class="list-group-item" style="padding:1px">
+
+                                                                        <span v-if="show_answer_list[current_step_index]">
+                                                                            <div v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == true">
+                                                                                <div class="text-white bg-success" style="padding:8px 16px" v-if="step_selected.step_retros_list[i].elements_list[j][0] == true">{{ element[0] }}<br /><i><i class="bi-arrows-move bi-check-square mr-1"></i>Élément sélectionné<br />Cet élément devrait être sélectionné.</i></div>
+                                                                                <div class="text-white bg-danger " style="padding:8px 16px" v-if="step_selected.step_retros_list[i].elements_list[j][0] == false">{{ element[0] }}<br /><i><i class="bi-arrows-move bi-check-square mr-1"></i>Élément sélectionné<br />Cet élément ne devait être sélectionné.</i></div>
+                                                                            </div>
+                                                                            <div v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == false">
+                                                                                <div style="padding:8px 16px" class="text-white bg-danger" v-if="step_selected.step_retros_list[i].elements_list[j][0] == true">{{ element[0] }}<br /><i><i class="bi-arrows-move bi-square mr-1"></i>Élément non sélectionné<br />Cet élément devait être sélectionné.</i></div>
+                                                                                <div style="padding:8px 16px" class="text-white bg-success" v-if="step_selected.step_retros_list[i].elements_list[j][0] == false">{{ element[0] }}<br /><i><i class="bi-arrows-move bi-square mr-1"></i>Élément non sélectionné.<br />Cet élément ne devait être sélectionné.</i></div>
+                                                                            </div>
+                                                                        </span>
+
+                                                                        <span v-if="show_answer_list[current_step_index]==false">
+                                                                            <div class="text-black " style="padding:8px 16px" v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == true">{{ element[0] }}</div>
+                                                                            <div class="text-black " style="padding:8px 16px" v-if="student_data_list[current_step_index][i].elements_list.includes(element[0]) == false"><del>{{ element[0] }}</del></div>
+                                                                        </span>
+
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!--                                                    -->
+                                        <!-- END - Elements to select (type 1100 to 1199)       -->
+                                        <!--                                                    -->
+                                        <!--                                                    -->
+                                        <!-- Texts (type >= 10000)                              -->
+                                        <!--                                                    -->
+                                        <div v-if="(selected_answer.type >= 10000) && (selected_answer.type <= 99999)">
+                                            <!--Answer box-->
+
+                                            <div v-if="(current_step_index == nb_completed_steps) && (answers_current_steps == false)">
+                                                <!--Not submitted / current step-->
+                                                <div class="grow-wrap">
+                                                    <textarea placeholder="Répondez ici" class="form-control" style="width: 100%; min-width: 100%;" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model="student_data_list[student_data_list.length - 1 ][i].text"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div v-if="(current_step_index < nb_completed_steps) || (answers_current_steps == true)">
+                                                <!--Submitted / no longer editable-->
+                                                <div class="card-body bg-light">
+                                                    {{ student_data_list[current_step_index][i].text }}
+                                                </div>
+                                                <!--Answer box-->
+                                                <div class="card-body text-white bg-info" v-if="steps_list[current_step_index].step_properties.show_answer  && (show_answer_list[current_step_index])">
+                                                    <div v-if="selected_answer.type == 10011">
+                                                        <!--Short text-->
+                                                        {{ step_selected.step_retros_list[i].short_answer }}
+                                                    </div>
+                                                    <div v-if="selected_answer.type == 10001">
+                                                        <!--Long text-->
+                                                        <span v-html="step_selected.step_retros_list[i].html"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                                    -->
+                                        <!-- END -- Texts (type >= 10000)                       -->
+                                        <!--                                                    -->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                                                    -->
+                        <!-- END - Question blocks                              -->
+                        <!--                                                    -->
+
+                    </div>
+                    <!--                                                    -->
+                    <!-- END - Standard page (type 1)                       -->
+                    <!--                                                    -->
+                    <!--                                                    -->
+                    <!-- Grille de raisonnement structuré (type 10001)       -->
+                    <!--                                                    -->
+                    <div class="mt-5" v-if="steps_list[current_step_index].step_properties.step_type == 10001">
+
+                        <div v-for="(hyp,k) in student_data_list[current_step_index].elements_list" :key="k">
+
+                            <h5>Hypothèse {{ k+1 }}: {{ hyp.name }}</h5>
+
+                            <!-- Large screen -->
+                            <div class="real_table mt-3">
+                                <div class="row mt-2 mb-5">
+                                    <div class="col-4 align-text-bottom card-header"><b>Éléments qui supportent l'hypothèse</b></div>
+                                    <div class="col-4 align-text-bottom card-header"><b>Éléments qui vont à l'encontre de l'hypothèse</b></div>
+                                    <div class="col-4 align-text-bottom card-header"><b>Éléments en faveur de l'hypothèse, mais non mentionnés dans le cas</b></div>
+                                    <div class="w-100"></div>
+                                    <div class="col-4 " :class="{'card-header': ((current_step_index < nb_completed_steps) || answers_current_steps)}">
+                                        <div class="grow-wrap mt-2" v-if="(current_step_index == nb_completed_steps) && (answers_current_steps == false)">
+                                            <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.support " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                        </div>
+                                        <div v-if=" (current_step_index < nb_completed_steps) || answers_current_steps ">
+                                            <p class="mb-0">{{ hyp.support }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 " :class="{'card-header': ((current_step_index < nb_completed_steps) || answers_current_steps)}">
+                                        <div class="grow-wrap mt-2" v-if="(current_step_index == nb_completed_steps) && (answers_current_steps == false)">
+                                            <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.encontre " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                        </div>
+                                        <div v-if=" (current_step_index < nb_completed_steps) || answers_current_steps ">
+                                            <p class="mb-0">{{ hyp.encontre }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 " :class="{'card-header': ((current_step_index < nb_completed_steps) || answers_current_steps)}">
+                                        <div class="grow-wrap mt-2" v-if="(current_step_index == nb_completed_steps) && (answers_current_steps == false)">
+                                            <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.absent " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                        </div>
+                                        <div v-if=" (current_step_index < nb_completed_steps) || answers_current_steps ">
+                                            <p class="mb-0">{{ hyp.absent }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END - Large screen -->
+                            <!-- Small screen -->
+                            <div class="not_table">
+                                <h6 class="mt-4">Éléments qui supportent l'hypothèse</h6>
+                                <div class="row col-12 mt-2 mb-2">
+                                    <div class="grow-wrap">
+                                        <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.support " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                    </div>
+                                </div>
+
+                                <h6 class="mt-4">Éléments qui sont à l'encontre de l'hypothèse</h6>
+                                <div class="row col-12 mt-2 mb-2">
+                                    <div class="grow-wrap">
+                                        <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.encontre " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                    </div>
+                                </div>
+
+                                <h6 class="mt-4">Éléments en faveur de l'hypothèse, mais absents du cas</h6>
+                                <div class="row col-12 mt-2 mb-2">
+                                    <div class="grow-wrap">
+                                        <textarea placeholder="Répondez ici" class="form-control" onInput="this.parentNode.dataset.replicatedValue = this.value" v-model=" hyp.absent " onfocus="this.parentNode.dataset.replicatedValue = this.value"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END - Small screen -->
+
+                        </div>
+                    </div>
+                    <!--                                                    -->
+                    <!-- END - Grille de raisonnement structuré (type 10001) -->
+                    <!--                                                    -->
+
+                </div>
+                <!--                                                    -->
+                <!-- END - Step pages                                   -->
+                <!--                                                    -->
+
+
+                <!--                                                    -->
+                <!-- Submit button                                      -->
+                <!--                                                    -->
+                <div>
+
+                    <div class="row mt-5 mb-5" v-if="current_step_index == nb_completed_steps">
+
+                        <div v-if="current_step_index < steps_list.length">
+
+                            <!--<h1 style="margin:0">START</h1>-->
+                            <!-- Briefing -->
+                            <div v-if="current_step_index == -1">
+                                <button type="button" class="btn btn-secondary w-100" @click="next_step">Commencer</button>
+                            </div>
+
+                            <div v-if="current_step_index >= 0">
+
+                                <div v-if="answers_current_steps == true">
+
+                                    <div class="card-body text-white bg-info text-center">
+                                        Nous avons ajouté de la rétroaction à vos réponses. Consultez-la avant de passer à la prochaine étape.
+                                    </div>
+                                    <button type="button" class="btn btn-warning w-100" @click="next_step">Aller à la prochaine étape</button>
+                                </div>
+
+                                <div v-if="(answers_current_steps == false) && see_next_button">
+
+                                    <!-- Avec rétroaction -->
+                                    <div v-if="steps_list[current_step_index].step_properties.step_type == 1 && steps_list[current_step_index].step_properties.show_answer == true">
+
+                                        <!-- Voir les réponses -->
+                                        <button type="button" class="btn btn-secondary w-100" @click="confirm_answer(true)">Confirmer les réponses et voir les réponses</button>
+
+                                        <!-- Ne pas voir les réponses -->
+                                        <button type="button" class="btn btn-secondary w-100" @click="confirm_answer(false)">Confirmer les réponses et passer à la prochaine étape</button>
+
+                                    </div>
+
+
+                                    <!-- Sans rétroaction -->
+                                    <div v-if="steps_list[current_step_index].step_properties.step_type >= 1000 || steps_list[current_step_index].step_properties.show_answer == false">
+
+                                        <!--<h3 style="margin:0">Sans rétroaction</h3>-->
+                                        <button type="button" class="btn btn-secondary w-100" @click="next_step">Confirmer les réponses et passer à la prochaine étape</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div v-if="current_step_index >= steps_list.length">
+
+                            <!--<h1 style="margin:0">END</h1>-->
+                            <!-- End -->
+                            <button type="button" class="btn btn-secondary w-100" v-if="(nb_completed_steps == steps_list.length)     && (current_step_index == steps_list.length)" @click="next_step">Suite</button>
+                            <button type="button" class="btn btn-secondary w-100" v-if="(nb_completed_steps == (steps_list.length+1)) && (current_step_index == (steps_list.length+1)) && see_next_button_end" @click="next_step">Suite</button>
+
+                            <div v-if="role_id >= 1000">
+                                <button type="button" class="btn btn-secondary w-100" v-if="(nb_completed_steps == (steps_list.length+2))" @click="access_cases_list">Retourner au menu principal</button>
+                            </div>
+                            <div v-if="role_id == 1">
+                                <button type="button" class="btn btn-secondary w-100" v-if="(nb_completed_steps == (steps_list.length+2))" @click="access_student_menu">Retourner au menu</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton pour voir finalement les réponses (si non affichées initialement) -->
+                    <div v-if="(current_step_index >= 0) && (current_step_index < steps_list.length)">
+                        <div class="row mt-5 mb-5" v-if="(current_step_index < (student_data_list.length-1)) && (steps_list[current_step_index].step_properties.step_type == 1) && (steps_list[current_step_index].step_properties.show_answer == true) && (show_answer_list[current_step_index] == false)">
+                            <button type="button" class="btn btn-secondary w-100" @click="show_answers_previous_step">Afficher les réponses</button>
+                        </div>
+                    </div>
+
+                </div>
+                <!--                                                    -->
+                <!-- END - Submit button                                -->
+                <!--                                                    -->
+
+
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<!--DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG --DEBUG -- DEBUG -- DEBUG -- 
+<div id="div_debug" style="background-color:lightgray;margin:50px 0px;padding:20px;display:none">
+    <h1>DEBUG INFO</h1>
+    <p>
+        case_id = {{ case_id }} <br />
+        user_id = {{ user_id }} <br />
+        role_id = {{ role_id }} <br />
+        student_data_id = {{ student_data_id }} <br />
+        attribution_id = {{ attribution_id }} <br />
+        case_completed = {{ case_completed }} <br />
+    </p>
+    <p>
+        steps_list.length = {{ steps_list.length }} <br />
+        current_step_index = {{ current_step_index }} <br />
+        nb_completed_steps = {{ nb_completed_steps }} <br />
+        see_next_button = {{ see_next_button }} <br />
+        answers_current_steps = {{ answers_current_steps }} <br />
+        steps_list = {{ steps_list }} <br />
+    </p>
+    <p>
+        step_selected.step_informations_list.length = {{ step_selected.step_informations_list.length }} <br />
+        step_selected.step_answers_list.length = {{ step_selected.step_answers_list.length }} <br />
+        step_selected.step_retros_list.length = {{ step_selected.step_retros_list.length }} <br />
+        step_selected = {{ step_selected }} <br />
+    </p>
+    <p>
+        student_data_list  {{ student_data_list }} <br />
+    </p>
+</div>
+DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG -- DEBUG --DEBUG -- DEBUG -- DEBUG -- DEBUG-->

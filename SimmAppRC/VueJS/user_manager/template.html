@@ -1,0 +1,52 @@
+<!----------------------------------------------------------------------------------------------------------------------->
+<!-- template.html - user manager                                                                                      -->
+<!----------------------------------------------------------------------------------------------------------------------->
+
+<div id="user_table">
+
+<h2>Gestion des acc&egrave;s</h2>
+
+	<div class="row">
+		<div class="col-12">
+
+			<v-card-title>
+				<v-text-field v-model="search"
+							  append-icon="mdi-magnify"
+							  label="Rechercher"
+							  single-line
+							  hide-details>
+				</v-text-field>
+			</v-card-title>
+			<v-data-table   :headers="headers"
+							:items="users"
+							:search="search"
+							:page.sync="page"
+							class="elevation-1"
+							@click:row="handleClick"
+							hide-default-footer
+							disable-pagination>
+			</v-data-table>
+
+		</div>
+	</div>
+
+</div>
+
+<div id="selected_user_menu" style="display:none; margin-bottom:30px">
+
+	<div class="row">
+		<div class="col-8">
+			<h1>{{ selected_user.user_name }} - {{ selected_user.cip }}</h1>
+			<p>
+				<select class="form-select" v-model="selected_user.role_id" @input="modify_user_role" >
+					  <option v-for="option in options" :value="option.value">
+						{{ option.text }}
+					  </option>
+				</select>
+			</p>
+		</div>
+	</div>
+
+	<button type="button" class="btn btn-outline-secondary btn-block mt-4" onclick="$('#selected_user_menu').hide();$('#user_table').show();">Retour au tableau</button>
+
+</div>

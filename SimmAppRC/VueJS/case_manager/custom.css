@@ -1,0 +1,21 @@
+
+.v-data-footer__select{
+	display:none;
+}
+
+.primary{
+	v-pagination__item--active:black;
+}
+
+tr:hover{
+	cursor:pointer;
+}
+
+.alert-secondary:hover{
+	background-color:yellow;
+	cursor:pointer;
+}
+
+.alert:hover{
+	cursor:pointer;
+}
