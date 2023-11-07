@@ -78,7 +78,7 @@
 
         <header class="header pageContainer-header">
             <div class="header-left">
-              <a class="header-logo" href="#">
+              <a class="header-logo"  href="javascript:set_html_page('VueJs/student_menu/index.html', 0, <%=Utilisateur.UserID%>, -1)">
                 <!-- logo.svg -->
                 <svg width="148" height="43" viewBox="0 0 148 43" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_109_1082)">
@@ -99,7 +99,10 @@
 
             <div class="header-right">
               <ul class="menu">
-                <li><a href="#">Liste des cas</a></li>
+                <li>
+            <a >Liste des cas</a>
+
+                </li>
               </ul>
               <button class="notifications">
                 <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">

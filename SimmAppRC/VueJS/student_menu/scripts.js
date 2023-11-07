@@ -12,6 +12,7 @@ function show_new_case_menu()
 Vue.use(CKEditor);
 
 
+
 var vm = new Vue({
 
 	el: "#main",

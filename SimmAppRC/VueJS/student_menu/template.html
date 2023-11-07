@@ -56,7 +56,7 @@
                     </svg>
                 </div>
             </div>
-            <div class="welcome-right">
+            <div class="welcome-right" id="div-welcome-right">
                 <div class="messagesContainer">
                     <div class="message" v-if="page_initial_menu>=0">
                         <div class="message-icon">
@@ -203,7 +203,7 @@
                         <div class="message-text text">
 
                             <div class="message-btns">
-                                <span v-for="status in ['Étudiant','Médecin']">
+                                <span id="btn-choix-occupation" v-for="status in ['Étudiant','Médecin']">
                                     <button type="button" class="btn" @click="user_info.statut_etude=status" :class="{btn_primary:user_info['statut_etude']==status, btn_secondary:user_info['statut_etude']!=status }">{{ status }}</button>
                                 </span>
                             </div>
@@ -266,7 +266,7 @@
                         </div>
 
                         <div class="message-text text">
-                            <input type="number" min="2000" max="2025" step="1" value="2023" v-model="user_info.annee_debut_formation" />
+                            <input type="number"  min="2000" max="2025" step="1"  v-model="user_info.annee_debut_formation" placeholder="AAAA"/>
 
                         </div>
                     </div>
@@ -324,7 +324,7 @@
                         </div>
 
                         <div class="message-text text">
-                            <input type="number" min="2000" max="2099" step="1" value="2023" v-model="user_info.annee_debut_externat" />
+                            <input type="number" min="2000" max="2099" step="1" value="2023" v-model="user_info.annee_debut_externat" placeholder="AAAA"/>
                         </div>
                     </div>
 
@@ -380,7 +380,7 @@
                         </div>
 
                         <div class="message-text text">
-                            <input type="number" min="2000" max="2050" step="1" value="2030" v-model="user_info.annee_fin_residence" />
+                            <input type="number" min="2000" max="2050" step="1" value="2030" v-model="user_info.annee_fin_residence" placeholder="AAAA"/>
                         </div>
                     </div>
 
@@ -436,7 +436,7 @@
                         </div>
 
                         <div class="message-text text">
-                            <input type="text" name="name" value="" v-model="user_info.specialite" />
+                            <input type="text" name="name" value="" v-model="user_info.specialite" placeholder="Ex: Oncologie"/>
                         </div>
                     </div>
 
@@ -494,14 +494,14 @@
                         </div>
 
                         <div class="message-text text">
-                            <p>
-                                <select class="form-control" v-model="user_info.aspects_a_pratiquer">
-                                    <option value="Génération d'hypothèses diagnostiques">Génération d'hypothèses diagnostiques</option>
+                           
+                                <select class="select-chat-siracle" v-model="user_info.aspects_a_pratiquer" >
+                                    <option  value="Génération d'hypothèses diagnostiques" selected>Génération d'hypothèses diagnostiques</option>
                                     <option value="Formulation du problème">Formulation du problème</option>
                                     <option value="Collecte de données orientée">Collecte de données orientée</option>
                                     <option value="Structuration du raisonnement clinique">Structuration du raisonnement clinique</option>
                                 </select>
-                            </p>
+                        
                         </div>
                     </div>
 
@@ -641,14 +641,16 @@
                         </div>
                     </div>
                     <div class="message">
-                        <p class="margin_auto">
-                            <button type="button" class="btn btn-primary " v-if="page_initial_menu > 0" @click="page_initial_menu = page_initial_menu - 1">&#8592;</button> <button type="button" class="btn btn-primary " @click="page_initial_menu = page_initial_menu + 1" v-if="page_initial_menu < 10">&#8594;</button> <button type="button" class="btn btn-primary" @click="send_user_info" v-if="page_initial_menu == 10">&#8594;</button>
+                        <p class="container-btn-fleches">
+                            <button type="button" class="btn-fleche btn btn-primary " v-if="page_initial_menu > 0" @click="page_initial_menu = page_initial_menu - 1" >&#8592;</button>
+                            <button type="button" class="btn-fleche btn btn-primary " v-if="page_initial_menu < 10" @click="page_initial_menu = page_initial_menu + 1"  >&#8594;</button> 
+                            <button type="button" class="btn-fleche btn btn-primary " v-if="page_initial_menu == 10" @click="send_user_info" >&#8594;</button>
                         </p>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 

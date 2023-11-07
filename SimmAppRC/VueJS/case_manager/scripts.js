@@ -63,9 +63,9 @@ var vm = new Vue({ // case manager
 
 		handleClick(value)
 		{
-
+			//alert(value)
 			// 
-			console.log("handleClick :: case id = " + value.case_id);
+			console.log("handleClick :: case id = " + value);
 
 			// Access to URL
 			// window.location.href = "./admin_case3.html";  // this reloads						
@@ -73,7 +73,7 @@ var vm = new Vue({ // case manager
 			// Get case position
 			for (i = 0; i < this.cases.length; i++)
 			{
-				if (this.cases[i].case_id == value.case_id)
+				if (this.cases[i].case_id == value)
 				{
 					this.sel_pos = i;
 				}
